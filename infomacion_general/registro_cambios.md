@@ -9,3 +9,4 @@ https://github.com/csparedes/frontend_aprendo_con_f
 11/13/2023 : Creacion de Proyecto Angular y archivo gitignore: Lalo
 + ng new AprendoConF
 + archivo .gitignore
++ installed bootstrap
