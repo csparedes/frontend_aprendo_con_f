@@ -1,1 +1,43 @@
-<p>user-registration-form works!</p>
+<section class="container mt-3">
+  <div class="title">
+    <h3>Forma de Registro</h3>
+  </div>
+  <form class="form" [formGroup]="userRegistrationForm" (ngSubmit)="getDataForm()">
+    <!--User Name -->
+    <label class="label" for="username">Nombre Usuario:</label>
+    <input type="text" class="form-control input is-link" formControlName="username" id="username" placeholder="Ingrese su Nombre de Usuario">
+
+    <!--Password -->
+    <label class="label" for="password">Contraseña:</label>
+    <input type="password" class="form-control input is-link" formControlName="password" id="password" placeholder="Ingrese su Contraseña">
+
+     <!--Password -->
+    <label class="label" for="email">Email:</label>
+    <input type="email" class="form-control input is-link" formControlName="email" id="email" placeholder="Ingrese su Email">
+
+     <!--Name -->
+    <label class="label" for="name">Nombre:</label>
+    <input type="text" class="form-control input is-link" formControlName="name" id="name" placeholder="Ingrese su Nombre">
+
+    <!--Postal Code -->
+    <label class="label" for="postalcode">Código Postal:</label>
+    <input type="text" class="form-control input is-link" formControlName="postalcode" id="postalcode" placeholder="Ingrese su Código Postal">
+
+     <!--Country -->
+    <label class="label" for="country">País:</label>
+    <input type="text" class="form-control input is-link" formControlName="country" id="country" placeholder="Ingrese su País">
+
+    <!--Role -->
+    <div class="role">
+      <input  type="radio" id="professor" formControlName="role" value="professor">
+      <label class="radio" for="professor">Profesor</label>
+       <input class="radio" type="radio" id="student" formControlName="role" value="student">
+      <label class="radio" for="student">Alumno</label>
+    </div>
+
+    <!--Send Form -->
+    <button type="submit" class="btn btn-success m-3 btn-size" >Enviar</button>
+    <button class="btn btn-danger m-3 btn-size" [routerLink]="['/home']">Cancelar</button>
+
+  </form>
+</section>

@@ -10,6 +10,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { C404Component } from './pages/c404/c404.component';
 import { UserRegistrationFormComponent } from './components/user-registration-form/user-registration-form.component';
 import { ProfessorCardComponent } from './components/professor-card/professor-card.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSelectCountryModule} from "@angular-material-extensions/select-country";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { ProfessorCardComponent } from './components/professor-card/professor-ca
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    NoopAnimationsModule,
+    MatSelectCountryModule.forRoot('en'),
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
