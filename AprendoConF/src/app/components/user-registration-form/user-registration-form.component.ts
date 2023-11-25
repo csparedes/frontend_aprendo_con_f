@@ -45,5 +45,12 @@ export class UserRegistrationFormComponent {
 
   getDataForm(){
     console.log(this.userRegistrationForm.value);
+    this.userRegistrationForm.value.country = this.userRegistrationForm.value.country.name
+    this.userRegistrationForm.reset();
   }
+
+   formValidator(formControlName:string, validator:string): boolean | undefined{
+    return this.userRegistrationForm.get(formControlName)?.hasError(validator) && this.userRegistrationForm.get(formControlName)?.touched
+  }
+
 }

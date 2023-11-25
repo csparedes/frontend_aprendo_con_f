@@ -1,3 +1,17 @@
+input.ng-invalid.ng-touched{
+  border-bottom: 2px dotted red;
+}
+
+input.ng-valid.ng-touched{
+  border-bottom: 2px solid green
+}
+
+.error{
+  color:tomato;
+  font-size:12px;
+  font-weight: bold;
+}
+
 .form{
   margin-top: 10px;
 }
@@ -8,6 +22,11 @@
 
 .btn-size{
   width: 80px;
+}
+
+legend{
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .role{
