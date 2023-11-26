@@ -1,60 +1,14 @@
-<!--<section class="d-flex justify-content-center mt-4">-->
-<!--   <div class="bg-grey rounded shadow-sm card-small">-->
-<!--    <div class="d-flex justify-content-center align-items-center row card-background">-->
-<!--      <figure class="col-12 col-md-4 text-center">-->
-<!--       <img class="img-fluid mb-3 img-thumbnail shadow-sm user-img mr-md-3" [src]="oneProfessor.imageUrl" alt="{{oneProfessor.name}}">-->
-
-<!--      </figure>-->
-
-<!--      <div class="col-12 col-md-8">-->
-<!--        <div class="d-flex flex-column p-2 m-2">-->
-<!--            <p><span>Nombre usuario:</span> {{oneProfessor?.username}}</p>-->
-<!--            <p><span>Nombre:</span> {{oneProfessor?.name}}</p>-->
-<!--            <p><span>Nombre Usuario:</span> {{oneProfessor?.username}}</p>-->
-<!--            <p><span>Email:</span> {{oneProfessor?.email}}</p>-->
-<!--        </div>-->
-<!--        &lt;!&ndash;Buttons to execute Actions &ndash;&gt;-->
-<!--        <div class="d-flex justify-content-center">-->
-<!--&lt;!&ndash;          <button class="btn btn-danger m-1"><img class="btn-image" src="assets/Delete.GIF" alt="delete" (click)="deleteUser(oneUser?._id)">Eliminar</button>&ndash;&gt;-->
-<!--&lt;!&ndash;          <button class="btn btn-success m-1" [routerLink]="['/updateuser', oneUser?._id]"><img class="btn-image" src="assets/Update.GIF" alt="update">Actualizar</button>&ndash;&gt;-->
-<!--               <button class="btn btn-primary m-1" [routerLink]="['/home']">Volver a listado</button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</section>-->
-
-<!--<section class="grid-container mt-4">-->
-<!--  <div class="bg-grey rounded shadow-sm card-small">-->
-<!--    <div class="grid-content">-->
-<!--      <figure class="grid-item img-container">-->
-<!--        <img class="img-fluid mb-3 img-thumbnail shadow-sm user-img" [src]="oneProfessor.imageUrl" alt="{{oneProfessor.name}}">-->
-<!--      </figure>-->
-<!--      <div class="grid-item info-container">-->
-<!--        <div class="d-flex flex-column p-2 m-2">-->
-<!--          <p><span>Nombre:</span> {{oneProfessor?.name}}</p>-->
-<!--          <p><span>Country:</span> {{oneProfessor?.country}}</p>-->
-<!--        </div>-->
-<!--        &lt;!&ndash; Place "Nombre Usuario" and "Email" in the right column &ndash;&gt;-->
-<!--        <div class="info-right">-->
-<!--          <p><span>Nombre Usuario:</span> {{oneProfessor?.username}}</p>-->
-<!--          <p><span>Email:</span> {{oneProfessor?.email}}</p>-->
-<!--        </div>-->
-<!--        &lt;!&ndash; Buttons to execute Actions &ndash;&gt;-->
-<!--        <div class="d-flex justify-content-center">-->
-<!--          <button class="btn btn-primary m-1" [routerLink]="['/home']">Volver a listado</button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</section>-->
-
 <div class="card-container">
   <div class="bg-grey rounded border-grey shadow-sm card-small">
     <div class="grid-content">
       <div class="grid-item img-container">
         <p class="nombre">{{oneProfessor?.name}}</p>
         <img class="square-img img-thumbnail shadow-sm user-img-large" [src]="oneProfessor.imageUrl" alt="{{oneProfessor.name}}">
+        <div class="location-info">
+            <img class="pin-location" [src]="oneProfessor.location.pinImage">
+            <p>{{oneProfessor.location.name}}, {{oneProfessor.location.country}}</p>
+        </div>
+        <!--<img class="pin-location" [src]="oneProfessor.location.pinImage">{{oneProfessor.location.name}} {{oneProfessor.location.country}}-->
         <!-- Use *ngIf to conditionally render the "Phone" section -->
         <p class="phone label" *ngIf="oneProfessor?.role === 'professor' && oneProfessor?.registered"><span>Phone:</span> {{oneProfessor?.phone}}</p>
         <div class="d-flex justify-content-center mt-2">

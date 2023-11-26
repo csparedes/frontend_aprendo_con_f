@@ -81,14 +81,14 @@
 .description {
   border-top: 2px solid grey;
   width: 100%;
-  height:auto;
-  margin-top: 1rem; /* Adjust the margin as needed */
+  height: auto;
+  margin-top: 1rem;
 }
 
 .bullet {
-  margin-right: 0.5rem; /* Espacio entre la viñeta y el texto */
-  font-size: 1rem; /* Tamaño de la fuente de la viñeta (ajusta según tus preferencias) */
-  color: #000; /* Color de la viñeta (ajusta según tus preferencias) */
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  color: #000;
 }
 
 .label{
@@ -107,6 +107,17 @@
   width: 30px;
   mix-blend-mode: multiply;
   padding: 5px;
+}
+
+.pin-location {
+  width: 20px;
+}
+
+.location-info {
+  margin-top:10px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 

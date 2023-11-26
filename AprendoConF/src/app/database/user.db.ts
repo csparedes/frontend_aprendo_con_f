@@ -22,7 +22,7 @@ export const USERS: User[] = [
       price: '$30.00 x hr',
       rating: 5,
       phone: '+34 123456789',
-      description: '5 años de experiencia eseñando matemáticas, física y química.'
+      description: '5 años de experiencia enseñando matemáticas, física y química.'
     },
     {
       id:2,
