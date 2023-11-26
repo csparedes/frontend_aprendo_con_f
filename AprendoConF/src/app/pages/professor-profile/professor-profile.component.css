@@ -1,0 +1,113 @@
+.card-container {
+  display: flex;
+  width: 600px;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 2rem); /* Adjust the space between the header and card */
+}
+
+.grid-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0; /* Adjust the gap as needed */
+}
+
+.grid-item {
+  padding: 1rem;
+}
+
+.img-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.square-img {
+  border-radius: 5%;
+  border: 2px solid #000; /* Add border styles as needed */
+  width: 150px; /* Make the image 50% bigger */
+  max-width: 200px; /* Limit the maximum width */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.user-img-large {
+  width: 100%;
+  height: auto;
+}
+
+.rating {
+  text-align: center;
+  margin-bottom: 1rem; /* Add space below the Rating image */
+}
+
+.rating-img {
+  border: 2px solid #000; /* Add a border around the Rating image */
+  max-width: 100px; /* Adjust the maximum width as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.nombre {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.phone {
+  margin-top: 1rem; /* Add space below the image for "Country" */
+}
+
+.info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-box {
+  border: 2px solid #000; /* Add a border around "Nombre Usuario" and "Email" */
+  padding: 1rem;
+}
+
+.info-top {
+  margin-top: 0; /* Remove margin from the top of the "Nombre Usuario" and "Email" section */
+}
+
+/* Add the grey border to the card */
+.border-grey {
+  border: 2px solid grey;
+}
+
+/* Add styling for the divider */
+.description {
+  border-top: 2px solid grey;
+  width: 100%;
+  height:auto;
+  margin-top: 1rem; /* Adjust the margin as needed */
+}
+
+.bullet {
+  margin-right: 0.5rem; /* Espacio entre la viñeta y el texto */
+  font-size: 1rem; /* Tamaño de la fuente de la viñeta (ajusta según tus preferencias) */
+  color: #000; /* Color de la viñeta (ajusta según tus preferencias) */
+}
+
+.label{
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.social-image{
+  width: 30px;
+  mix-blend-mode: multiply;
+  padding: 5px;
+}
+
+.btn-image{
+  width: 30px;
+  mix-blend-mode: multiply;
+  padding: 5px;
+}
+
+
+
