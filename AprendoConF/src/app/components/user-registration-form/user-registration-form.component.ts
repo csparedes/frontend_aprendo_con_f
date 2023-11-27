@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 
 @Component({
@@ -8,11 +8,9 @@ import {FormGroup, FormControl, Validators} from "@angular/forms";
 })
 export class UserRegistrationFormComponent {
   userRegistrationForm:FormGroup;
+  showPassword: boolean = false;
 
-
-  //router = inject('Router')
-
-  constructor() {
+    constructor() {
     this.userRegistrationForm = new FormGroup({
       username: new FormControl('', [
         Validators.required
@@ -38,7 +36,10 @@ export class UserRegistrationFormComponent {
       ]),
       role: new FormControl('', [
         Validators.required
-      ])
+      ]),
+      knowledgeArea: new FormControl('', [
+
+  ])
 
     }, []);
   }
@@ -51,6 +52,10 @@ export class UserRegistrationFormComponent {
 
    formValidator(formControlName:string, validator:string): boolean | undefined{
     return this.userRegistrationForm.get(formControlName)?.hasError(validator) && this.userRegistrationForm.get(formControlName)?.touched
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 
 }

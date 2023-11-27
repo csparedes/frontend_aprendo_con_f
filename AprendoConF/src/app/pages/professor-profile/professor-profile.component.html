@@ -2,7 +2,7 @@
   <div class="bg-grey rounded border-grey shadow-sm card-small">
     <div class="grid-content">
       <div class="grid-item img-container">
-        <p class="nombre">{{oneProfessor?.name}}</p>
+        <p class="nombre">{{oneProfessor.name}}</p>
         <img class="square-img img-thumbnail shadow-sm user-img-large" [src]="oneProfessor.imageUrl" alt="{{oneProfessor.name}}">
         <div class="location-info">
             <img class="pin-location" [src]="oneProfessor.location.pinImage">
@@ -10,14 +10,9 @@
         </div>
         <!--<img class="pin-location" [src]="oneProfessor.location.pinImage">{{oneProfessor.location.name}} {{oneProfessor.location.country}}-->
         <!-- Use *ngIf to conditionally render the "Phone" section -->
-        <p class="phone label" *ngIf="oneProfessor?.role === 'professor' && oneProfessor?.registered"><span>Phone:</span> {{oneProfessor?.phone}}</p>
-        <div class="d-flex justify-content-center mt-2">
-          <img class="social-image" src="assets/images/Facebook.gif" alt="facebook">
-          <img class="social-image" src="assets/images/LinkedIn.gif" alt="LinkedIn">
-          <img class="social-image" src="assets/images/Instagram.gif" alt="Instagram">
-          <img class="social-image" src="assets/images/Twitter.gif" alt="Twitter">
-          <img class="social-image" src="assets/images/SnapChat.gif" alt="SnapChat">
-        </div>
+        <p class="phone label" *ngIf="oneProfessor?.registered"><span>Phone:</span> {{oneProfessor.phone}}</p>
+        <button class ="btn btn-primary m-1" [routerLink]="['/newuser']" *ngIf="!oneProfessor?.registered">Registrate</button>
+
       </div>
       <div class="grid-item info-container">
         <div class="rating">
@@ -25,8 +20,8 @@
         </div>
         <div class="info-box">
           <div class="info-top">
-            <p><span class="label">Email:</span> {{oneProfessor?.email}}</p>
-            <p><span class="label">Precio x Hora:</span> {{oneProfessor?.price}}</p>
+            <p><span class="label">Email:</span> {{oneProfessor.email}}</p>
+            <p><span class="label">Precio x Hora:</span> {{oneProfessor.price}}</p>
             <h2 class="label">Areas de Conocimiento</h2>
             <ul *ngIf="oneProfessor?.knowledgeAreas">
               <li *ngFor="let area of oneProfessor.knowledgeAreas">
@@ -35,7 +30,7 @@
           </div>
         </div>
         <div class="description">
-          <p>{{oneProfessor?.description}}</p>
+          <p>{{oneProfessor.description}}</p>
         </div>
         <!-- Move "Volver a listado" to the bottom of the second column -->
         <div class="d-flex justify-content-center">

@@ -31,6 +31,7 @@ export class ProfessorProfileComponent implements OnInit {
     },
     price: '',
     rating: 0,
+    description: ''
   };
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService) { }

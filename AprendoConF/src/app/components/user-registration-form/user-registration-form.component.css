@@ -37,3 +37,26 @@ legend{
 .radio{
   padding: 10px;
 }
+
+.password-input-container {
+  position: relative;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.password-toggle img {
+  width: 20px;
+}
+
+.input {
+  padding-right: 30px;
+}
+

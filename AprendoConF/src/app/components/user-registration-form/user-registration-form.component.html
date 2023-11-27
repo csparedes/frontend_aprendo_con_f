@@ -22,7 +22,11 @@
 
     <!--Password -->
     <label class="label" for="password">Contraseña:</label>
-    <input type="password" class="form-control input is-link" formControlName="password" id="password" placeholder="Ingrese su Contraseña">
+    <div class="password-input-container">
+      <input type="{{showPassword ? 'text':'password'}}" class="form-control input is-link" formControlName="password" id="password" placeholder="Ingrese su Contraseña"/>
+      <button type="button" class="btn btn-link password-toggle" (click)="togglePasswordVisibility()">
+      <img [src]="showPassword ? './assets/images/hide-eye.JPG ': './assets/images/eye.JPG'" /> </button>
+    </div>
     <p class="error" *ngIf="formValidator('password','required')">Contraseña es un Campo Requerido</p>
     <p class="error" *ngIf="formValidator('password','pattern')">Formato Inválido: Una-Mayuscula, Una-Miniscula, Un-Digito, Un-Character Special y 8 Caracteres</p>
 
@@ -44,18 +48,19 @@
     <p class="error" *ngIf="formValidator('postalcode','required')">Código Postal es un Campo Requerido</p>
     <p class="error" *ngIf="formValidator('postalcode','pattern')">Formato de Código Postal Inválido. 5 Dígitos requeridos</p>
 
-     <!--Country -->
-    <!--<label class="label" for="country">País:</label>
-    <input type="text" class="form-control input is-link" formControlName="country" id="country" placeholder="Ingrese su País">
-    <p class="error" *ngIf="formValidator('country','required')">País es un Campo Requerido</p>-->
-
-    <!--Country -->
+       <!--Country -->
     <label class="label" for="country">País:</label>
     <mat-select-country formControlName="country" id="country"></mat-select-country>
 
+  <!--Areas de Conocimiento-->
+  <div *ngIf="userRegistrationForm.get('role')?.value === 'professor'">
+    <label class="label" for="knowledgeArea">Áreas de Conocimiento:</label>
+    <input type="text" class="form-control input is-link" formControlName="knowledgeArea" id="knowledgeArea" placeholder="Ingrese su Área de Conocimiento">
+  </div>
+
     <!--Send Form -->
     <div class="btn-container">
-      <button type="submit" class="btn btn-success m-3 btn-size" >Enviar</button>
+      <button type="submit" class="btn btn-success m-3 btn-size" [disabled]="!userRegistrationForm.valid" >Enviar</button>
       <button class="btn btn-danger m-3 btn-size" [routerLink]="['/home']">Cancelar</button>
     </div>
   </form>
