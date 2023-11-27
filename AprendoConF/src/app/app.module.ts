@@ -16,6 +16,7 @@ import { C404Component } from './pages/c404/c404.component';
 import { UserRegistrationFormComponent } from './components/user-registration-form/user-registration-form.component';
 import { ProfessorCardComponent } from './components/professor-card/professor-card.component';
 import { ProfessorProfileComponent } from './pages/professor-profile/professor-profile.component';
+import { ForoQaComponent } from './components/foro-qa/foro-qa.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ProfessorProfileComponent } from './pages/professor-profile/professor-p
     C404Component,
     UserRegistrationFormComponent,
     ProfessorCardComponent,
-    ProfessorProfileComponent
+    ProfessorProfileComponent,
+    ForoQaComponent
   ],
   imports: [
     BrowserModule,
