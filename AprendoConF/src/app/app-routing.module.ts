@@ -6,11 +6,6 @@ import { C404Component } from './pages/c404/c404.component';
 import { ProfessorProfileComponent } from './pages/professor-profile/professor-profile.component';
 
 const routes: Routes = [
-  //{ path: '', pathMatch: 'full', redirectTo: 'home' },
-  // { path: 'home', component: HomeComponent },
-  // { path: 'newuser', component: UserRegistrationFormComponent },
-  // { path: 'professor/:id', component: ProfessorProfileComponent },
-  // { path: '**', component: C404Component },
   {
     path: 'pages',
     loadChildren: () =>
