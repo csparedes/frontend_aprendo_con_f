@@ -1,37 +1,74 @@
 <div class="container">
   <div class="row">
-    <div class="col-xl-4 col-md-6 col-sm-12" *ngFor="let professor of professorCard">
+    <div
+      class="col-xl-4 col-md-6 col-sm-12"
+      *ngFor="let professor of professorCard"
+    >
       <div class="card mb-4">
         <div class="card-body">
           <div class="user-info">
             <p class="user_name">{{ professor.name }}</p>
-            <img class="rating" [src]="getRatingImageUrl(professor.rating)" alt="">
+            <img
+              class="rating"
+              [src]="getRatingImageUrl(professor.rating)"
+              alt=""
+            />
           </div>
           <div class="user-image-container text-center">
-            <img class="user-image img-fluid mt-3" [src]="professor.imageUrl" alt="">
+            <img
+              class="user-image img-fluid mt-3"
+              [src]="professor.imageUrl"
+              alt=""
+            />
           </div>
           <div class="knowledge-areas text-center mt-3">
             <ul class="list-inline">
-              <li class="list-inline-item" *ngFor="let area of professor.knowledgeAreas">{{ area }}</li>
+              <li
+                class="list-inline-item"
+                *ngFor="let area of professor.knowledgeAreas"
+              >
+                {{ area }}
+              </li>
             </ul>
           </div>
-          <div class="location-price d-flex justify-content-between align-items-center mt-3">
+          <div
+            class="location-price d-flex justify-content-between align-items-center mt-3"
+          >
             <div class="locations d-flex align-items-center">
-              <img class="pin-location" [src]="professor.location.pinImage" alt="">
+              <img
+                class="pin-location"
+                [src]="professor.location.pinImage"
+                alt=""
+              />
               <div class="location-details">
                 <p class="location-name mb-0">{{ professor.location.name }},</p>
-                <p class="location-country mb-0">{{ professor.location.country }}</p>
+                <p class="location-country mb-0">
+                  {{ professor.location.country }}
+                </p>
               </div>
             </div>
             <div class="precio d-flex align-items-center">
-              <img class="bill-image" src="./assets/images/Dollar_Bill.JPG" alt="">
+              <img
+                class="bill-image"
+                src="./assets/images/Dollar_Bill.JPG"
+                alt=""
+              />
               <p class="mb-0">{{ professor.price }}</p>
             </div>
           </div>
           <div class="text-center mt-auto">
             <div class="d-flex justify-content-left actions">
-              <button class="btn btn-primary" type="button" name="button" [routerLink]="['/professor', professor.id]">Pérfil</button>
-              <button class="btn btn-primary" type="button" name="button">Subscribete</button>
+              <button
+                class="btn btn-primary"
+                type="button"
+                name="button"
+                [routerLink]="['/pages', 'teacher', professor.id]"
+              >
+                Pérfil
+              </button>
+              <button class="btn btn-primary" type="button" name="button">
+                Subscribete
+              </button>
             </div>
           </div>
         </div>
@@ -39,5 +76,3 @@
     </div>
   </div>
 </div>
-
-
