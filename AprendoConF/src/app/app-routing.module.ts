@@ -7,6 +7,11 @@ import { ProfessorProfileComponent } from './pages/professor-profile/professor-p
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'pages',
+    pathMatch: 'full',
+  },
+  {
     path: 'pages',
     loadChildren: () =>
       import('./pages/pages.module').then((module) => module.PagesModule),
