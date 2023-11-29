@@ -22,7 +22,7 @@
         </p>
         <button
           class="btn btn-primary m-1"
-          [routerLink]="['/newuser']"
+          [routerLink]="['/pages','newuser']"
           *ngIf="!oneProfessor?.registered"
         >
           Registrate
@@ -35,6 +35,7 @@
             [src]="getRatingImageUrl(oneProfessor.rating)"
             alt="Rating"
           />
+          <img class="professor-img" src="./assets/images/Instructor.JPG" alt="Professor logo">
         </div>
         <div class="info-box">
           <div class="info-top">

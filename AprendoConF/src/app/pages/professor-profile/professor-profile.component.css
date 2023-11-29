@@ -47,6 +47,12 @@
   height: auto; /* Maintain aspect ratio */
 }
 
+.professor-img{
+  max-width: 40px; /* Adjust the maximum width as needed */
+  height: auto;
+  margin-left: 20px;
+}
+
 .nombre {
   text-align: center;
   font-weight: bold;

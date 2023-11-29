@@ -1,51 +1,8 @@
-/*.footer-content {*/
-/*    width: 100%;*/
-/*    max-width: 600px;*/
-/*    margin: 0 auto;*/
-/*    padding: 20px;*/
-/*    box-sizing: border-box;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*  }*/
-
-/*.btn-text{*/
-/*  margin-left: 10px;*/
-/*  color: white;*/
-/*}*/
-
-/*.custom-input{*/
-/*  width: 100%;*/
-/*  height: 40px*/
-/*}*/
-
 .navbar{
   margin-top: 20px;
 }
 
-.footer-content {
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 
-.btn-text {
-  margin-left: 10px;
-  color: white;
-}
 
-.custom-input {
-  width: 100%;
-  height: 40px;
-}
-/* Style the button */
-.btn-primary {
-  height: 40px;
-  width: auto; /* Let the button width adjust to its content */
-}
+
 

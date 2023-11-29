@@ -144,6 +144,18 @@
       />
     </div>
 
+    <!--Image -->
+    <div *ngIf="userRegistrationForm.get('role')?.value === 'professor'">
+      <label class="label" for="image">Imagen:</label>
+      <input
+        type="text"
+        class="form-control input is-link"
+        formControlName="image"
+        id="image"
+        placeholder="Ingrese URL de su Imagen"
+      />
+    </div>
+
     <!--Send Form -->
     <div class="btn-container">
       <button
@@ -153,7 +165,7 @@
       >
         Enviar
       </button>
-      <button class="btn btn-danger m-3 btn-size" [routerLink]="['/home']">
+      <button class="btn btn-danger m-3 btn-size" [routerLink]="['/pages','home']">
         Cancelar
       </button>
     </div>

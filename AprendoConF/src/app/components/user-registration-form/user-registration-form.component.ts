@@ -38,9 +38,10 @@ export class UserRegistrationFormComponent {
         Validators.required
       ]),
       knowledgeArea: new FormControl('', [
-
-  ])
-
+      ]),
+      imageUrl: new FormControl('', [
+        Validators.pattern(/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/)
+      ])
     }, []);
   }
 
