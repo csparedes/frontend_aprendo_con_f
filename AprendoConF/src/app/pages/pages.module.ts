@@ -9,7 +9,8 @@ import { ProfessorCardComponent } from '../components/professor-card/professor-c
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ViewsComponent } from './views/views.component';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { MatTableModule } from '@angular/material/table';
     HttpClientModule,
     FormsModule,
     MatTableModule,
+    MatCheckboxModule,
   ],
 })
 export class PagesModule {}
