@@ -8,6 +8,8 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { ProfessorCardComponent } from '../components/professor-card/professor-card.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ViewsComponent } from './views/views.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,14 @@ import { HttpClientModule } from '@angular/common/http';
     ProfessorProfileComponent,
     FooterComponent,
     ProfessorCardComponent,
+    ViewsComponent,
   ],
-  imports: [CommonModule, PagesRoutingModule, HttpClientModule, FormsModule],
+  imports: [
+    CommonModule,
+    PagesRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    MatTableModule,
+  ],
 })
 export class PagesModule {}
