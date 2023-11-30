@@ -1,6 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { MessageService } from 'src/app/services/message.service';
 
 export interface PeriodicElement {
   name: string;
@@ -28,7 +29,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./views.component.css'],
 })
 export class ViewsComponent implements OnInit {
+  //Servicios
+  mensajes = inject(MessageService);
+
+  //Variables
+  rol: string = 'admin';
+
   ngOnInit() {
+    this.mensajes.loading(false);
     // Identificadores de los elementos que deben ser preseleccionados
     const preselectedIds = [2, 4];
 
