@@ -8,6 +8,7 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { ProfessorCardComponent } from '../components/professor-card/professor-card.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ForoqaComponent } from './foroqa/foroqa.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
     ProfessorProfileComponent,
     FooterComponent,
     ProfessorCardComponent,
+    ForoqaComponent,
   ],
   imports: [CommonModule, PagesRoutingModule, HttpClientModule, FormsModule],
 })
