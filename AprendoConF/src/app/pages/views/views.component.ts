@@ -1,9 +1,17 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { Component, OnInit, inject } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnInit,
+  ViewChild,
+  inject,
+} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { USERS } from 'src/app/database/user.db';
 import { User } from 'src/app/interfaces/user.interface';
 import { MessageService } from 'src/app/services/message.service';
+import { ViewEncapsulation } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 
 export interface teacherElements {
   nombre: string;
@@ -20,8 +28,9 @@ const TEACHERS: teacherElements[] = [];
   selector: 'app-views',
   templateUrl: './views.component.html',
   styleUrls: ['./views.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
-export class ViewsComponent implements OnInit {
+export class ViewsComponent implements OnInit, AfterViewInit {
   //Arrays tables
   teachersData: any[] = [];
   students: any[] = [];
@@ -38,16 +47,30 @@ export class ViewsComponent implements OnInit {
     'estado',
     'check',
   ];
-  dataSource = this.teachersData;
-  selection = new SelectionModel<teacherElements>(true, []);
+  dataSource = new MatTableDataSource<teacherElements>(TEACHERS);
+
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+  }
 
   ngOnInit() {
-    this.selection.select(this.dataSource[0]);
     this.cargarTablas();
   }
 
   toggleCheckbox(row: any) {
     console.log(row);
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   cargarTablas() {
@@ -80,13 +103,8 @@ export class ViewsComponent implements OnInit {
           selected: false,
         };
       }
-
       TEACHERS.push(teacher);
-      this.teachersData = [...TEACHERS];
-      // this.teachersData = this.teachersData.filter(
-      //   (el) => el.estado == 'Inactivo'
-      // );
-      this.dataSource = this.teachersData;
+      //this.teachersData = [...TEACHERS];
     });
   }
 }

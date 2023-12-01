@@ -11,6 +11,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { ViewsComponent } from './views/views.component';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -28,6 +31,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     FormsModule,
     MatTableModule,
     MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
   ],
 })
 export class PagesModule {}

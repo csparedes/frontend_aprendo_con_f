@@ -1,3 +1,47 @@
 table {
   width: 100%;
 }
+.mat-form-field {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mat-form-field .mat-form-field-label {
+  color: red;
+}
+
+.mat-form-field .mat-form-field-flex {
+  background-color: green;
+  border-radius: 4px;
+}
+
+.mat-form-field .mat-form-field-flex .mat-input-element {
+  color: red;
+}
+
+.mat-form-field .mat-form-field-flex .mat-form-field-underline {
+  background-color: red;
+}
+
+.mat-form-field .mat-form-field-flex .mat-form-field-ripple {
+  background-color: red;
+}
+
+.mat-form-field .mat-form-field-flex .mat-form-field-ripple .mat-ripple-element {
+  background-color: red;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  /* width: 60%; */
+  /* background-color: red; */
+}
+/* .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: yellow !important;
+} */
+
+/* .mat-mdc-text-field-wrapper {
+  border-radius: 20px !important;
+  height: 20px;
+} */
+
