@@ -1,27 +1,20 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit, inject } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
+import { USERS } from 'src/app/database/user.db';
+import { User } from 'src/app/interfaces/user.interface';
 import { MessageService } from 'src/app/services/message.service';
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+export interface teacherElements {
+  nombre: string;
+  rama: string;
+  ubicacion: string;
+  correo: string;
+  estado: string;
+  selected: boolean;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
+const TEACHERS: teacherElements[] = [];
 
 @Component({
   selector: 'app-views',
@@ -29,43 +22,71 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./views.component.css'],
 })
 export class ViewsComponent implements OnInit {
-  //Servicios
-  mensajes = inject(MessageService);
+  //Arrays tables
+  teachersData: any[] = [];
+  students: any[] = [];
+  servicedata: User[] = USERS;
 
   //Variables
-  rol: string = 'admin';
-
-  ngOnInit() {
-    this.mensajes.loading(false);
-    // Identificadores de los elementos que deben ser preseleccionados
-    const preselectedIds = [2, 4];
-
-    // Busca los elementos en la tabla de datos
-    const preselectedElements = ELEMENT_DATA.filter((element) =>
-      preselectedIds.includes(element.position)
-    );
-
-    // Preselecciona los elementos
-    preselectedElements.forEach((element) => {
-      this.selection.select(element);
-    });
-  }
+  rol: string = 'Admin';
 
   displayedColumns: string[] = [
-    'position',
-    'name',
-    'weight',
-    'symbol',
-    'select',
+    'nombre',
+    'rama',
+    'ubicacion',
+    'correo',
+    'estado',
+    'check',
   ];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  selection = new SelectionModel<PeriodicElement>(true, []);
+  dataSource = this.teachersData;
+  selection = new SelectionModel<teacherElements>(true, []);
 
-  toggle(row: PeriodicElement) {
-    this.selection.toggle(row);
+  ngOnInit() {
+    this.selection.select(this.dataSource[0]);
+    this.cargarTablas();
+  }
 
-    if (this.selection.isSelected(row)) {
-      console.log(row);
-    }
+  toggleCheckbox(row: any) {
+    console.log(row);
+  }
+
+  cargarTablas() {
+    console.log(this.servicedata);
+    let teacher = {
+      nombre: '',
+      rama: '',
+      ubicacion: '',
+      correo: '',
+      estado: '',
+      selected: true,
+    };
+    this.servicedata.forEach((element) => {
+      if (element.status == 'Activo') {
+        teacher = {
+          nombre: element.name,
+          rama: element.knowledgeAreas[0],
+          ubicacion: element.country,
+          correo: element.email,
+          estado: element.status,
+          selected: true,
+        };
+      } else {
+        teacher = {
+          nombre: element.name,
+          rama: element.knowledgeAreas[0],
+          ubicacion: element.country,
+          correo: element.email,
+          estado: element.status,
+          selected: false,
+        };
+      }
+
+      TEACHERS.push(teacher);
+      this.teachersData = [...TEACHERS];
+      // this.teachersData = this.teachersData.filter(
+      //   (el) => el.estado == 'Inactivo'
+      // );
+      this.dataSource = this.teachersData;
+    });
   }
 }

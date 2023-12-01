@@ -1,14 +1,14 @@
 export interface User {
   id: number;
   registered: boolean;
-  imageUrl: string,
+  imageUrl: string;
   username: string;
   password: string;
   email: string;
   name: string;
   postalcode: string;
   country: string;
-  role: string,
+  role: string;
   knowledgeAreas: string[];
   location: {
     name: string;
@@ -18,5 +18,6 @@ export interface User {
   price: string;
   rating: number;
   phone?: string;
-  description?: string
+  description?: string;
+  status: string;
 }
