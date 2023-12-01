@@ -31,6 +31,9 @@ const TEACHERS: teacherElements[] = [];
   encapsulation: ViewEncapsulation.None,
 })
 export class ViewsComponent implements OnInit, AfterViewInit {
+  //Servicios
+  mensajeService = inject(MessageService);
+
   //Arrays tables
   teachersData: any[] = [];
   students: any[] = [];
@@ -57,6 +60,7 @@ export class ViewsComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.mensajeService.loading(false);
     this.cargarTablas();
   }
 
