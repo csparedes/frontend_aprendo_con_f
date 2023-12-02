@@ -144,16 +144,39 @@
       />
     </div>
 
+    <!--Experiencia-->
+    <div *ngIf="userRegistrationForm.get('role')?.value === 'professor'">
+      <label class="label" for="experience">Experiencia:</label>
+      <input
+        type="number"
+        class="form-control input is-link"
+        formControlName="experience"
+        id="experience"
+        placeholder="Ingrese sus años de experiencia"
+      />
+    </div>
+
     <!--Image -->
     <div *ngIf="userRegistrationForm.get('role')?.value === 'professor'">
       <label class="label" for="image">Imagen:</label>
       <input
         type="text"
         class="form-control input is-link"
-        formControlName="image"
-        id="image"
+        formControlName="imageUrl"
+        id="imageUrl"
         placeholder="Ingrese URL de su Imagen"
       />
+    </div>
+
+      <!--Description -->
+    <div *ngIf="userRegistrationForm.get('role')?.value === 'professor'">
+      <label class="label" for="image">Descripción:</label>
+      <textarea
+        class="form-control input is-link"
+        formControlName="description"
+        id="description"
+        placeholder="Ingrese descripción de su perfil"
+      ></textarea>
     </div>
 
     <!--Send Form -->

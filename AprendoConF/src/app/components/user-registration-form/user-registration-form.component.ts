@@ -41,6 +41,12 @@ export class UserRegistrationFormComponent {
       ]),
       imageUrl: new FormControl('', [
         Validators.pattern(/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:/~\+#]*[\w\-\@?^=%&amp;/~\+#])?/)
+      ]),
+      description: new FormControl('', [
+
+      ]),
+      experience: new FormControl('', [
+
       ])
     }, []);
   }

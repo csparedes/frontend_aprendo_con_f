@@ -19,4 +19,5 @@ export interface User {
   rating: number;
   phone?: string;
   description?: string
+  experience?: number
 }

@@ -43,6 +43,11 @@
   object-fit: cover;
 }
 
+.imagen-redimensionada {
+  width: 300px; /* Ancho deseado */
+  height: auto; /* Altura deseada */
+}
+
 .knowledge-areas ul {
   list-style-type: none;
   padding: 0;
