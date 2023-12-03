@@ -9,11 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppBarComponent } from './components/app-bar/app-bar.component';
 import { HeaderComponent } from './components/header/header.component';
-import { HomeComponent } from './pages/home/home.component';
-import { C404Component } from './pages/c404/c404.component';
 import { UserRegistrationFormComponent } from './components/user-registration-form/user-registration-form.component';
-import { ProfessorCardComponent } from './components/professor-card/professor-card.component';
-import { ProfessorProfileComponent } from './pages/professor-profile/professor-profile.component';
 import { LoginModalComponent } from './components/modal/login-modal/login-modal.component';
 
 @NgModule({
