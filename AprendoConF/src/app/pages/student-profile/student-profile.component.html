@@ -1,34 +1,34 @@
-<div class="card-container">
-  <div class="bg-grey rounded border-grey shadow-sm card-small">
-    <div class="card-grid-wrapper">
-      <div class="student-header">
-        <p>{{ oneStudent.name }}</p>
-      </div>
-      <div class="student-image">
-        <img src="./assets/images/Student.JPG" alt="" class="student-image">
-      </div>
-      <div class="student-details">
-        <p><span class="label">Email:</span> {{ oneStudent.email }}</p>
-        <p><span class="label">Phone:</span> {{ oneStudent.phone }}</p>
-        <p><span class="label">Country:</span> {{ oneStudent.country }}</p>
-        <p><span class="label">City:</span> {{ oneStudent.location.name }}</p>
-       </div>
-      <div class="student-areas">
-        <h2 class="label">Cursos Inscrito</h2>
-        <ul *ngIf="oneStudent?.knowledgeAreas">
-          <li *ngFor="let area of oneStudent.knowledgeAreas">
-            <span class="bullet">&#8226;</span> {{ area }}
-          </li>
-        </ul>
-      </div>
-      <div class="btn-container">
-        <button class="btn btn-primary m-1" [routerLink]="['/pages', 'home']">
-          <img class="btn-image" src="assets/images/Home.GIF" alt="home" />Regresar
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
+<!--<div class="card-container">-->
+<!--  <div class="bg-grey rounded border-grey shadow-sm card-small">-->
+<!--    <div class="card-grid-wrapper">-->
+<!--      <div class="student-header">-->
+<!--        <p>{{ oneStudent.name }}</p>-->
+<!--      </div>-->
+<!--      <div class="student-image">-->
+<!--        <img src="./assets/images/Student.JPG" alt="" class="student-image">-->
+<!--      </div>-->
+<!--      <div class="student-details">-->
+<!--        <p><span class="label">Email:</span> {{ oneStudent.email }}</p>-->
+<!--        <p><span class="label">Phone:</span> {{ oneStudent.phone }}</p>-->
+<!--        <p><span class="label">Country:</span> {{ oneStudent.country }}</p>-->
+<!--        <p><span class="label">City:</span> {{ oneStudent.location.name }}</p>-->
+<!--       </div>-->
+<!--      <div class="student-areas">-->
+<!--        <h2 class="label">Cursos Inscrito</h2>-->
+<!--        <ul *ngIf="oneStudent?.knowledgeAreas">-->
+<!--          <li *ngFor="let area of oneStudent.knowledgeAreas">-->
+<!--            <span class="bullet">&#8226;</span> {{ area }}-->
+<!--          </li>-->
+<!--        </ul>-->
+<!--      </div>-->
+<!--      <div class="btn-container">-->
+<!--        <button class="btn btn-primary m-1" [routerLink]="['/pages', 'home']">-->
+<!--          <img class="btn-image" src="assets/images/Home.GIF" alt="home" />Regresar-->
+<!--        </button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 
 
 

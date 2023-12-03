@@ -3,21 +3,21 @@ import { CommonModule } from '@angular/common';
 import { PagesRoutingModule } from './pages-routing.module';
 import { C404Component } from './c404/c404.component';
 import { HomeComponent } from './home/home.component';
-import { ProfessorProfileComponent } from './professor-profile/professor-profile.component';
+//import { ProfessorProfileComponent } from './professor-profile/professor-profile.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { ProfessorCardComponent } from '../components/professor-card/professor-card.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { StudentProfileComponent } from './student-profile/student-profile.component';
+//import { StudentProfileComponent } from './student-profile/student-profile.component';
 
 @NgModule({
   declarations: [
     C404Component,
     HomeComponent,
-    ProfessorProfileComponent,
+    //ProfessorProfileComponent,
     FooterComponent,
     ProfessorCardComponent,
-    StudentProfileComponent,
+    //StudentProfileComponent,
   ],
   imports: [CommonModule, PagesRoutingModule, HttpClientModule, FormsModule],
   exports: [

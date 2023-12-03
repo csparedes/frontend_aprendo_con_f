@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {USERS} from "../../database/user.db";
+//import {USERS} from "../../database/user.db";
 
 @Component({
   selector: 'app-home',
@@ -8,5 +8,7 @@ import {USERS} from "../../database/user.db";
 })
 export class HomeComponent {
 
-  protected readonly USERS = USERS;
+  //protected readonly USERS = USERS;
+  protected readonly USERS: any = [];
+
 }
