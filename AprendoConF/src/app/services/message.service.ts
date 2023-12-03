@@ -21,4 +21,19 @@ export class MessageService {
       Swal.close();
     }
   }
+
+  public errorSerivicios() {
+    Swal.fire({
+      iconHtml: '<img src="../../assets/bad.png" style="width:80%">',
+      html: `<p style="font-size: 1rem;  color: #1d5172";>Algo Salió mal intentelo mas tarde</p>`,
+      title: `<p style="font-size: 1.5rem; margin:0px !important;  color: #1d5172";>Error en el servicio</p>`,
+      customClass: {
+        icon: 'no-border',
+        popup: 'custom-popup',
+      },
+      showConfirmButton: true,
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Continuar',
+    });
+  }
 }
