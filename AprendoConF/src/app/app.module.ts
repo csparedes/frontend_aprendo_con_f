@@ -6,6 +6,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
 import { HttpClientModule } from '@angular/common/http';
 
+
 import { AppComponent } from './app.component';
 import { AppBarComponent } from './components/app-bar/app-bar.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -15,6 +16,7 @@ import { UserRegistrationFormComponent } from './components/user-registration-fo
 import { ProfessorCardComponent } from './components/professor-card/professor-card.component';
 import { ProfessorProfileComponent } from './pages/professor-profile/professor-profile.component';
 import { LoginModalComponent } from './components/modal/login-modal/login-modal.component';
+import { ProfesorComponent } from './components/vista/profesor/profesor.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { LoginModalComponent } from './components/modal/login-modal/login-modal.
     HeaderComponent,
     UserRegistrationFormComponent,
     LoginModalComponent,
+    ProfesorComponent,
   ],
   imports: [
     BrowserModule,

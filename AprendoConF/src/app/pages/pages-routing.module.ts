@@ -5,6 +5,8 @@ import { UserRegistrationFormComponent } from '../components/user-registration-f
 import { ProfessorProfileComponent } from './professor-profile/professor-profile.component';
 import { C404Component } from './c404/c404.component';
 import {StudentProfileComponent} from "./student-profile/student-profile.component";
+import { AlumnosComponent } from './listado/alumnos/alumnos.component';
+import { ProfesoresComponent } from './listado/profesores/profesores.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -12,6 +14,8 @@ const routes: Routes = [
   { path: 'newuser', component: UserRegistrationFormComponent },
   { path: 'teacher/:id', component: ProfessorProfileComponent },
   { path: 'student/:id', component: StudentProfileComponent },
+  { path:'listadoA',component: AlumnosComponent},
+  { path:'listadoP',component: ProfesoresComponent},
   { path: '**', redirectTo: 'home' },
 ];
 

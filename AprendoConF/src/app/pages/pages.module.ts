@@ -9,6 +9,11 @@ import { ProfessorCardComponent } from '../components/professor-card/professor-c
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { AlumnosComponent } from './listado/alumnos/alumnos.component';
+import { ProfesoresComponent } from './listado/profesores/profesores.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 @NgModule({
   declarations: [
@@ -18,8 +23,11 @@ import { StudentProfileComponent } from './student-profile/student-profile.compo
     FooterComponent,
     ProfessorCardComponent,
     StudentProfileComponent,
+    AlumnosComponent,
+    ProfesoresComponent,
+
   ],
-  imports: [CommonModule, PagesRoutingModule, HttpClientModule, FormsModule],
+  imports: [CommonModule, PagesRoutingModule, HttpClientModule, FormsModule,  MatTableModule,MatPaginatorModule],
   exports: [
     FooterComponent
   ]

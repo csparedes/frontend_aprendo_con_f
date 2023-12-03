@@ -3,7 +3,7 @@ import {User} from "../interfaces/user.interface";
 export const USERS: User[] = [
   {
       id: 1,
-      role: 'professor',
+      role: 'alumno',
       registered: true,
       username: 'Fernanda',
       password: '1234',
@@ -96,7 +96,7 @@ export const USERS: User[] = [
     },
     {
       id:5,
-      role: 'professor',
+      role: 'alumno',
       registered: true,
       username: 'Kristel',
       password: '12345',
