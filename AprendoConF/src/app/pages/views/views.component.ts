@@ -94,7 +94,7 @@ export class ViewsComponent implements OnInit {
         ubicacion: element.country,
         correo: element.email,
         estado: element.status,
-        selected: element.status == 'active' ? true : false,
+        selected: element.status == 'activo' ? true : false,
       };
       TEACHERS.push(teacher);
       //this.teachersData = [...TEACHERS];
