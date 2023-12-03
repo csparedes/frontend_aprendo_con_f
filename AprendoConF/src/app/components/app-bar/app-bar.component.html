@@ -13,7 +13,10 @@
       <button class="btn btn-outline-success m-1" type="button">
         Búsqueda
       </button>
-      <button class="btn btn-outline-success m-1" type="button">Login</button>
+      <button 
+      class="btn btn-outline-success m-1" 
+      type="button" 
+      (click)="openLoginModal()">Login</button>
       <button
         class="btn btn-outline-success m-1"
         type="button"
@@ -24,4 +27,6 @@
       </button>
     </div>
   </div>
+
 </nav>
+<app-login-modal (closeLoginModalEvent)="closeLoginModal()"></app-login-modal>

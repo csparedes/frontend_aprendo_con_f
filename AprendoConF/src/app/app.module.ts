@@ -14,6 +14,7 @@ import { C404Component } from './pages/c404/c404.component';
 import { UserRegistrationFormComponent } from './components/user-registration-form/user-registration-form.component';
 import { ProfessorCardComponent } from './components/professor-card/professor-card.component';
 import { ProfessorProfileComponent } from './pages/professor-profile/professor-profile.component';
+import { LoginModalComponent } from './components/modal/login-modal/login-modal.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ProfessorProfileComponent } from './pages/professor-profile/professor-p
     AppBarComponent,
     HeaderComponent,
     UserRegistrationFormComponent,
+    LoginModalComponent,
   ],
   imports: [
     BrowserModule,
