@@ -51,7 +51,7 @@ export class ViewsComponent implements OnInit {
     'estado',
     'check',
   ];
-  dataSource = new MatTableDataSource<teacherElements>(TEACHERS);
+  dataSourceTeacher = new MatTableDataSource<teacherElements>(TEACHERS);
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -66,11 +66,11 @@ export class ViewsComponent implements OnInit {
     console.log(row);
   }
 
-  applyFilter(event: Event) {
+  applyFilterTeacher(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    this.dataSourceTeacher.filter = filterValue.trim().toLowerCase();
+    if (this.dataSourceTeacher.paginator) {
+      this.dataSourceTeacher.paginator.firstPage();
     }
   }
 
@@ -98,8 +98,8 @@ export class ViewsComponent implements OnInit {
       TEACHERS.push(teacher);
       //this.teachersData = [...TEACHERS];
     });
-    this.dataSource = new MatTableDataSource<teacherElements>(TEACHERS);
-    this.dataSource.paginator = this.paginator;
+    this.dataSourceTeacher = new MatTableDataSource<teacherElements>(TEACHERS);
+    this.dataSourceTeacher.paginator = this.paginator;
   }
 
   async getAllUser() {
