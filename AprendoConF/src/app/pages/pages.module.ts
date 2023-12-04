@@ -16,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProfessorProfileComponent,
     FooterComponent,
     ProfessorCardComponent,
+
+
   ],
   imports: [CommonModule, PagesRoutingModule, HttpClientModule, FormsModule],
 })
