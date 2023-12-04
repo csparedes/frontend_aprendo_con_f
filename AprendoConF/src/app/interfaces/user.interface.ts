@@ -33,6 +33,7 @@ export interface User {
   phone?: string;
   description?: string;
   experience?: number;
+  status: string;
 }
 
 export interface UserPr {

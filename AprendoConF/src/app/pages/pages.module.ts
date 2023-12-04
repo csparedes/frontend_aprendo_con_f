@@ -8,7 +8,12 @@ import { FooterComponent } from '../components/footer/footer.component';
 import { ProfessorCardComponent } from '../components/professor-card/professor-card.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-//import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { ViewsComponent } from './views/views.component';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -17,11 +22,18 @@ import { HttpClientModule } from '@angular/common/http';
     //ProfessorProfileComponent,
     FooterComponent,
     ProfessorCardComponent,
-    //StudentProfileComponent,
+    ViewsComponent,
   ],
-  imports: [CommonModule, PagesRoutingModule, HttpClientModule, FormsModule],
-  exports: [
-    FooterComponent
-  ]
+  imports: [
+    CommonModule,
+    PagesRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPaginatorModule,
+  ],
 })
 export class PagesModule {}
