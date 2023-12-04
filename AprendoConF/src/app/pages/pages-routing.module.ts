@@ -5,6 +5,8 @@ import { UserRegistrationFormComponent } from '../components/user-registration-f
 import { ViewsComponent } from './views/views.component';
 //import { ProfessorProfileComponent } from './professor-profile/professor-profile.component';
 //import {StudentProfileComponent} from "./student-profile/student-profile.component";
+import { C404Component } from './c404/c404.component';
+import { MapaComponent } from '../components/mapa/mapa.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },

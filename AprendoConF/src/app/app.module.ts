@@ -11,6 +11,8 @@ import { AppBarComponent } from './components/app-bar/app-bar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { UserRegistrationFormComponent } from './components/user-registration-form/user-registration-form.component';
 import { LoginModalComponent } from './components/modal/login-modal/login-modal.component';
+import { ProfessorCardComponent } from './components/professor-card/professor-card.component';
+import { MapaComponent } from './components/mapa/mapa.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { LoginModalComponent } from './components/modal/login-modal/login-modal.
     HeaderComponent,
     UserRegistrationFormComponent,
     LoginModalComponent,
+    MapaComponent,
   ],
   imports: [
     BrowserModule,
