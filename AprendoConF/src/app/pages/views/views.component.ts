@@ -7,11 +7,12 @@ import {
   inject,
 } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { User } from 'src/app/interfaces/user.interface';
+import { User, sendStatus } from 'src/app/interfaces/user.interface';
 import { MessageService } from 'src/app/services/message.service';
 import { ViewEncapsulation } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { DataService } from 'src/app/services/data.service';
+import Swal from 'sweetalert2';
 
 export interface teacherElements {
   nombre: string;
@@ -23,6 +24,7 @@ export interface teacherElements {
 }
 
 const TEACHERS: teacherElements[] = [];
+const STUDENTS: teacherElements[] = [];
 
 @Component({
   selector: 'app-views',
@@ -39,11 +41,12 @@ export class ViewsComponent implements OnInit {
   teachersData: any[] = [];
   students: any[] = [];
   servicedata: User[] = [];
+  stateInterface: sendStatus = { status: '' };
 
   //Variables
   rol: string = 'Admin';
 
-  displayedColumns: string[] = [
+  displayedColumnsTeacher: string[] = [
     'nombre',
     'rama',
     'ubicacion',
@@ -51,10 +54,22 @@ export class ViewsComponent implements OnInit {
     'estado',
     'check',
   ];
-  dataSource = new MatTableDataSource<teacherElements>(TEACHERS);
+  displayedColumnsStudents: string[] = [
+    'nombre',
+    'rama',
+    'ubicacion',
+    'correo',
+    'estado',
+    'check',
+  ];
+  dataSourceTeacher = new MatTableDataSource<teacherElements>(TEACHERS);
+  dataSourceStudent = new MatTableDataSource<teacherElements>(STUDENTS);
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
+
+  @ViewChild('paginatorTeacher') paginatorTeacher!: MatPaginator;
+  @ViewChild('paginatorStudent') paginatorStudent!: MatPaginator;
 
   constructor() {}
 
@@ -64,13 +79,52 @@ export class ViewsComponent implements OnInit {
 
   toggleCheckbox(row: any) {
     console.log(row);
+
+    this.changeState(row);
   }
 
-  applyFilter(event: Event) {
+  async changeState(rowTable: any) {
+    this.mensajeService.loading(true);
+    if (rowTable.estado == 'registrado' || rowTable.estado == 'inactivo') {
+      this.stateInterface.status = 'activo';
+    } else if (rowTable.estado == 'activo') {
+      this.stateInterface.status = 'inactivo';
+    }
+    console.log(this.stateInterface);
+
+    try {
+      const response = await this.dataService.updateState(
+        rowTable.id,
+        this.stateInterface
+      );
+      console.log(response);
+      this.mensajeService.loading(false);
+      Swal.fire({
+        title: 'Actualización Exitosa.',
+        text: `${rowTable.nombre} ahora se encuentra ${this.stateInterface.status}.`,
+        icon: 'info',
+        confirmButtonColor: '#5fc1c5   ',
+        confirmButtonText: 'Aceptar',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
+    } catch (error) {}
+  }
+
+  applyFilterTeacher(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
+    this.dataSourceTeacher.filter = filterValue.trim().toLowerCase();
+    if (this.dataSourceTeacher.paginator) {
+      this.dataSourceTeacher.paginator.firstPage();
+    }
+  }
+  applyFilterStudent(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSourceStudent.filter = filterValue.trim().toLowerCase();
+    if (this.dataSourceStudent.paginator) {
+      this.dataSourceStudent.paginator.firstPage();
     }
   }
 
@@ -85,21 +139,54 @@ export class ViewsComponent implements OnInit {
       estado: '',
       selected: true,
     };
+
+    let student = {
+      id: 0,
+      nombre: '',
+      rama: '',
+      ubicacion: '',
+      correo: '',
+      estado: '',
+      selected: true,
+    };
     this.servicedata.forEach((element) => {
-      teacher = {
-        id: element.id,
-        nombre: element.name,
-        rama: element.country,
-        ubicacion: element.country,
-        correo: element.email,
-        estado: element.status,
-        selected: element.status == 'activo' ? true : false,
-      };
-      TEACHERS.push(teacher);
+      if (element.role == 'profesor') {
+        teacher = {
+          id: element.id,
+          nombre: element.name,
+          rama: element.country,
+          ubicacion: element.country,
+          correo: element.email,
+          estado: element.status,
+          selected: element.status == 'activo' ? true : false,
+        };
+        TEACHERS.push(teacher);
+      } else if (element.role == 'estudiante') {
+        student = {
+          id: element.id,
+          nombre: element.name,
+          rama: element.country,
+          ubicacion: element.country,
+          correo: element.email,
+          estado: element.status,
+          selected: element.status == 'activo' ? true : false,
+        };
+        STUDENTS.push(student);
+      }
       //this.teachersData = [...TEACHERS];
     });
-    this.dataSource = new MatTableDataSource<teacherElements>(TEACHERS);
-    this.dataSource.paginator = this.paginator;
+
+    console.log(STUDENTS);
+    console.log(TEACHERS);
+
+    this.dataSourceTeacher = new MatTableDataSource<teacherElements>(TEACHERS);
+    this.dataSourceStudent = new MatTableDataSource<teacherElements>(STUDENTS);
+    this.dataSourceTeacher.paginator = this.paginatorTeacher;
+    this.dataSourceStudent.paginator = this.paginatorStudent;
+
+    console.log(this.dataSourceTeacher.paginator);
+    console.log(this.paginator);
+    console.log(this.paginatorStudent);
   }
 
   async getAllUser() {
@@ -108,12 +195,10 @@ export class ViewsComponent implements OnInit {
     try {
       const response = await this.dataService.getAllUsers();
       this.servicedata = [...response];
-      console.log(typeof this.servicedata);
       this.cargarTablas();
       console.log(this.servicedata);
       this.mensajeService.loading(false);
     } catch (error) {
-      console.log(error);
       this.mensajeService.errorSerivicios();
     }
   }
