@@ -10,13 +10,20 @@
       <!--<a class="navbar-brand">Aprendo con F</a>-->
     </div>
     <div class="d-flex">
-      <button class="btn btn-outline-success m-1" type="button" [routerLink]="['mapa']">
+      <button
+        class="btn btn-outline-success m-1"
+        type="button"
+        [routerLink]="['mapa']"
+      >
         Búsqueda
       </button>
-      <button 
-      class="btn btn-outline-success m-1" 
-      type="button" 
-      (click)="openLoginModal()">Login</button>
+      <button
+        class="btn btn-outline-success m-1"
+        type="button"
+        (click)="openLoginModal()"
+      >
+        Login
+      </button>
       <button
         class="btn btn-outline-success m-1"
         type="button"
@@ -25,8 +32,15 @@
       >
         Register
       </button>
+      <button
+        class="btn btn-outline-success m-1"
+        type="button"
+        [routerLink]="['/pages', 'views']"
+        routerLinkActive="active"
+      >
+        Administración Users
+      </button>
     </div>
   </div>
-
 </nav>
 <app-login-modal (closeLoginModalEvent)="closeLoginModal()"></app-login-modal>
