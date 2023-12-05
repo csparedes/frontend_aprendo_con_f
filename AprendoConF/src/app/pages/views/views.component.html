@@ -51,12 +51,13 @@
           </td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsTeacher"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumnsTeacher"></tr>
       </table>
       <mat-paginator
         [pageSizeOptions]="[5]"
         aria-label="Select page of users"
+        #paginatorTeacher="matPaginator"
       ></mat-paginator>
     </div>
     <br />
@@ -66,13 +67,13 @@
       <mat-label>Filtro</mat-label>
       <input
         matInput
-        (keyup)="applyFilterTeacher($event)"
+        (keyup)="applyFilterStudent($event)"
         placeholder="Ej. Registrado"
         #input
       />
     </mat-form-field>
     <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="dataSourceTeacher">
+      <table mat-table [dataSource]="dataSourceStudent">
         <!-- Columnas de nombre, posición, peso y símbolo -->
         <ng-container matColumnDef="nombre">
           <th mat-header-cell *matHeaderCellDef>Nombre</th>
@@ -111,12 +112,16 @@
           </td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsStudents"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumnsStudents"
+        ></tr>
       </table>
       <mat-paginator
         [pageSizeOptions]="[5]"
         aria-label="Select page of users"
+        #paginatorStudent="matPaginator"
       ></mat-paginator>
     </div>
   </div>
