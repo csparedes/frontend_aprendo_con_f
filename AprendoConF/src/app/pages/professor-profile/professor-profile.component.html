@@ -41,10 +41,10 @@
           <div class="info-top">
             <p><span class="label">Email:</span> {{ oneProfessor.email }}</p>
             <p>
-              <span class="label">Precio x Hora:</span> {{ oneProfessor.hourly_rate }}
+              <span class="label">Precio x Hora:</span> {{ oneProfessor.hourly_rate | currency: 'GBP' }}
             </p>
             <h2 class="label">Areas de Conocimiento</h2>
-            <ul *ngIf="oneProfessor.areas">
+            <ul class="knowledge-areas" *ngIf="oneProfessor.areas">
               <li *ngFor="let area of oneProfessor.areas">
                 <span class="bullet">&#8226;</span> {{ area }}
               </li>

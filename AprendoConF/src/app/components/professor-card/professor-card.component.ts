@@ -22,7 +22,8 @@ export class ProfessorCardComponent {
       console.log(response);
       this.professorCard = response;
       this.professorCard.forEach(card => {
-        card.areas = String(card.areas).split(',')
+        card.areas = Array.isArray(card.areas) ? card.areas : [card.areas];
+        //card.areas = String(card.areas).split(',')
       })
     }catch(error:any){
       console.log(error);

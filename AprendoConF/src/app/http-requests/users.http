@@ -1,1 +1,7 @@
 GET http://localhost:3001/api/users
+
+####
+GET http://localhost:3001/api/profesor/1
+
+###
+http://localhost:3001/api/users/estudiante/activo

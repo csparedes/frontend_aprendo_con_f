@@ -14,12 +14,14 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {StudentProfileComponent} from "./student-profile/student-profile.component";
 
 @NgModule({
   declarations: [
     C404Component,
     HomeComponent,
     ProfessorProfileComponent,
+    StudentProfileComponent,
     FooterComponent,
     ProfessorCardComponent,
     ViewsComponent,

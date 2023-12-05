@@ -9,7 +9,9 @@ import { User } from '../interfaces/user.interface';
 })
 export class DataService {
   private baseUrl = 'http://localhost:3001/api/users';
-  private baseUrlprofessor: string = 'http://localhost:3001/api/users/profesor';
+  private baseUrlprofessor: string = 'http://localhost:3001/api/users/profesores/activo';
+  private baseUrlstudent: string = 'http://localhost:3001/api/users/estudiante/activo';
+
 
   private httpClient = inject(HttpClient);
 
@@ -21,8 +23,16 @@ export class DataService {
     return firstValueFrom(this.httpClient.get<User[]>(this.baseUrlprofessor));
   }
 
-    getUserById(id: number) : Promise<User>{
+  getProfessorById(id: number) : Promise<User>{
     return firstValueFrom(this.httpClient.get<User>(`${this.baseUrlprofessor}/${id}`));
+  }
+
+  getAllActiveStudents(){
+    return firstValueFrom(this.httpClient.get<User[]>(this.baseUrlstudent));
+  }
+
+   getStudentById(id: number) : Promise<User>{
+    return firstValueFrom(this.httpClient.get<User>(`${this.baseUrlstudent}/${id}`));
   }
 
 }
