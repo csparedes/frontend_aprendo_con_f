@@ -1,24 +1,29 @@
 import {Component, inject, Input} from '@angular/core';
-import {UserService} from "../../services/users.service";
 import {User} from "../../interfaces/user.interface";
-//import {USERS} from "../../database/user.db";
+import {DataService} from "../../services/data.service";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-professor-card',
   templateUrl: './professor-card.component.html',
   styleUrls: ['./professor-card.component.css']
+
 })
 export class ProfessorCardComponent {
-  //@Input() professorCard: User[] = USERS;
   @Input() professorCard : User[] = [];
+  router = inject(Router);
 
-  private userService  = inject(UserService);
+  private userService  = inject(DataService);
 
   async ngOnInit(){
     try{
-      const response: User[] = await this.userService.getAll();
+      const response: User[] = await this.userService.getAllActiveProfessors();
       console.log(response);
       this.professorCard = response;
+      this.professorCard.forEach(card => {
+        card.areas = String(card.areas).split(',')
+      })
     }catch(error:any){
       console.log(error);
     }

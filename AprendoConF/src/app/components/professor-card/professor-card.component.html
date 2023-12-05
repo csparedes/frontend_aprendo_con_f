@@ -26,7 +26,7 @@
             <ul class="list-inline">
               <li
                 class="list-inline-item"
-                *ngFor="let area of professor.knowledgeAreas"
+                *ngFor="let area of professor.areas"
               >
                 {{ area }}
               </li>
@@ -36,11 +36,11 @@
             class="location-price d-flex justify-content-between align-items-center mt-3"
           >
             <div class="locations d-flex align-items-center">
-              <!--<img
+              <img
                 class="pin-location"
-                [src]="professor.location.pinImage"
-                alt=""-
-              />-->
+                src="./assets/images/Pin_Location.JPG"
+                alt="Pin location"
+              />
               <div class="location-details">
                 <p class="location-name mb-0">{{ professor.city }},</p>
                 <p class="location-country mb-0">
@@ -54,7 +54,7 @@
                 src="./assets/images/Dollar_Bill.JPG"
                 alt=""
               />
-              <p class="mb-0">{{ professor.hourly_rate }}</p>
+              <p class="mb-0">{{ professor.hourly_rate | currency: 'GBP' }}</p>
             </div>
           </div>
           <div class="text-center mt-auto">
@@ -63,7 +63,7 @@
                 class="btn btn-primary"
                 type="button"
                 name="button"
-                [routerLink]="['/pages', 'teacher', professor.id]"
+                [routerLink]="['/pages', 'professor', professor.id]"
               >
                 Pérfil
               </button>

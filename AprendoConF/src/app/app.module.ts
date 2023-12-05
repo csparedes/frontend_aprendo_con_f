@@ -27,7 +27,7 @@ import { LoginModalComponent } from './components/modal/login-modal/login-modal.
     NoopAnimationsModule,
     MatSelectCountryModule.forRoot('es'),
     HttpClientModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
