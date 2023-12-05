@@ -30,7 +30,7 @@ import { MapaComponent } from './components/mapa/mapa.component';
     NoopAnimationsModule,
     MatSelectCountryModule.forRoot('es'),
     HttpClientModule,
-    FormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

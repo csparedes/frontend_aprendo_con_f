@@ -1,30 +1,36 @@
-import {Component, inject, Input} from '@angular/core';
-import {UserService} from "../../services/users.service";
-import {User} from "../../interfaces/user.interface";
-//import {USERS} from "../../database/user.db";
+import { Component, inject, Input } from '@angular/core';
+import { User } from '../../interfaces/user.interface';
+import { DataService } from '../../services/data.service';
+import { Router } from '@angular/router';
+import { MessageService } from 'src/app/services/message.service';
 
 @Component({
   selector: 'app-professor-card',
   templateUrl: './professor-card.component.html',
-  styleUrls: ['./professor-card.component.css']
+  styleUrls: ['./professor-card.component.css'],
 })
 export class ProfessorCardComponent {
-  //@Input() professorCard: User[] = USERS;
-  @Input() professorCard : User[] = [];
+  @Input() professorCard: User[] = [];
+  router = inject(Router);
+  mensajeService = inject(MessageService);
 
-  private userService  = inject(UserService);
+  private userService = inject(DataService);
 
-  async ngOnInit(){
-    try{
-      const response: User[] = await this.userService.getAll();
+  async ngOnInit() {
+    try {
+      const response: User[] = await this.userService.getAllActiveProfessors();
       console.log(response);
       this.professorCard = response;
-    }catch(error:any){
+      this.professorCard.forEach((card) => {
+        card.areas = Array.isArray(card.areas) ? card.areas : [card.areas];
+        this.mensajeService.loading(false);
+        //card.areas = String(card.areas).split(',')
+      });
+    } catch (error: any) {
       console.log(error);
     }
   }
   getRatingImageUrl(rating: number): string {
-  return `./assets/images/Puntuacion_Gold_${rating}_Stars.png`;
-}
-
+    return `./assets/images/Puntuacion_Gold_${rating}_Stars.png`;
+  }
 }
