@@ -1,17 +1,20 @@
 export interface User {
-  id: number;
-  name: string;
+  id?: any;
+  role: string;
+  username: string;
+  password: string;
   email: string;
+  name: string;
+  postal_code: string
   country: string;
   city: string;
+  areas?: string[];
+  experience?: number;
   imageUrl: string;
-  hourly_rate: string;
-  role: string;
-  areas: string[];
+  description: string;
+  hourly_rate: any;
   rating: number;
   phone?: string;
-  description?: string;
-  experience?: number;
   status: string;
 }
 

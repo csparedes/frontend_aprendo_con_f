@@ -18,6 +18,7 @@ input.ng-valid.ng-touched{
 
 .label{
   font-weight: bold;
+  margin-top: 10px;
 }
 
 .btn-size{
