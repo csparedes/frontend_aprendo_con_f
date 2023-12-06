@@ -16,18 +16,22 @@ export class ProfessorCardComponent {
 
   private userService = inject(DataService);
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.getUsers();
+  }
+
+  async getUsers() {
+    this.mensajeService.loading(true);
     try {
       const response: User[] = await this.userService.getAllActiveProfessors();
       console.log(response);
       this.professorCard = response;
       this.professorCard.forEach((card) => {
-        card.areas = String(card.areas).split(',')
+        card.areas = String(card.areas).split(',');
         this.mensajeService.loading(false);
-
       });
     } catch (error: any) {
-      console.log(error);
+      this.mensajeService.errorSerivicios();
     }
   }
   getRatingImageUrl(rating: number): string {

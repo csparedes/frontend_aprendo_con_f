@@ -110,7 +110,9 @@ export class ViewsComponent implements OnInit {
           window.location.reload();
         }
       });
-    } catch (error) {}
+    } catch (error) {
+      this.mensajeService.errorSerivicios();
+    }
   }
 
   applyFilterTeacher(event: Event) {

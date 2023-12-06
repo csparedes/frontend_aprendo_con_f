@@ -5,17 +5,20 @@ export interface User {
   password: string;
   email: string;
   name: string;
-  postal_code: string
+  postal_code: string;
   country: string;
   city: string;
   areas?: string[];
-  experience?: number;
+  experience?: any;
   imageUrl: string;
   description: string;
   hourly_rate: any;
-  rating: number;
+  rating: any;
   phone?: string;
   status: string;
+  fatal?: string;
+  respuesta?: boolean;
+  mensaje?: any;
 }
 
 export interface sendStatus {
