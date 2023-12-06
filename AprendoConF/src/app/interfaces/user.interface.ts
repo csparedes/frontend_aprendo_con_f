@@ -1,18 +1,24 @@
 export interface User {
-  id: number;
-  name: string;
+  id?: any;
+  role: string;
+  username: string;
+  password: string;
   email: string;
+  name: string;
+  postal_code: string;
   country: string;
   city: string;
+  areas?: string[];
+  experience?: any;
   imageUrl: string;
-  hourly_rate: string;
-  role: string;
-  areas: string[];
-  rating: number;
+  description: string;
+  hourly_rate: any;
+  rating: any;
   phone?: string;
-  description?: string;
-  experience?: number;
   status: string;
+  fatal?: string;
+  respuesta?: boolean;
+  mensaje?: any;
 }
 
 export interface sendStatus {

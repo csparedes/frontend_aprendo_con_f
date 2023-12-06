@@ -4,4 +4,31 @@ GET http://localhost:3001/api/users
 GET http://localhost:3001/api/profesor/1
 
 ###
-http://localhost:3001/api/users/estudiante/activo
+GET http://localhost:3001/api/estudiante/1
+
+
+###
+###
+POST http://localhost:3001/api/users
+Content-Type: application/json
+
+{
+  "role": "profesor",
+  "username": "tamarabolero",
+  "password": "123456",
+  "email": "tax22@gmail.com",
+  "name": "Tamara Bolero",
+  "postal_code": "12345",
+  "country": "España",
+  "city": "Granada",
+  "areas": [
+    "Ciencias",
+    "Matemáticas",
+    "Física"
+  ],
+  "experience": 5,
+  "imageUrl": "https://plus.unsplash.com/premium_photo-1698527694657-d4a066aadf7a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "description": "Emprendedora",
+  "hourly_rate": 40,
+  "phone": "1+890-7890"
+}

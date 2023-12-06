@@ -36,4 +36,19 @@ export class MessageService {
       confirmButtonText: 'Continuar',
     });
   }
+
+  public mensajeError(mensaje: string, titulo: string) {
+    Swal.fire({
+      iconHtml: '<img src="../../assets/bad.png" style="width:80%">',
+      html: `<p style="font-size: 1rem;  color: #1d5172";>${mensaje}</p>`,
+      title: `<p style="font-size: 1.5rem; margin:0px !important;  color: #1d5172";>${titulo}</p>`,
+      customClass: {
+        icon: 'no-border',
+        popup: 'custom-popup',
+      },
+      showConfirmButton: true,
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Continuar',
+    });
+  }
 }

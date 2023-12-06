@@ -13,22 +13,22 @@
       <div class="role">
         <input
           type="radio"
-          id="professor"
+          id="profesor"
           name="role"
           formControlName="role"
-          value="professor"
+          value="profesor"
           required
         />
-        <label class="radio" for="professor">Profesor</label>
+        <label class="radio" for="profesor">Profesor</label>
         <input
           class="radio"
           type="radio"
-          id="student"
+          id="estudiante"
           name="role"
           formControlName="role"
-          value="student"
+          value="estudiante"
         />
-        <label class="radio" for="student">Alumno</label>
+        <label class="radio" for="estudiante">Estudiante</label>
         <p class="error" *ngIf="formValidator('role', 'required')">
           Rol es un Campo Requerido
         </p>
@@ -110,18 +110,18 @@
     </p>
 
     <!--Postal Code -->
-    <label class="label" for="postalcode">Código Postal:</label>
+    <label class="label" for="postal_code">Código Postal:</label>
     <input
       type="text"
       class="form-control input is-link"
-      formControlName="postalcode"
-      id="postalcode"
+      formControlName="postal_code"
+      id="postal_code"
       placeholder="Ingrese su Código Postal"
     />
-    <p class="error" *ngIf="formValidator('postalcode', 'required')">
+    <p class="error" *ngIf="formValidator('postal_code', 'required')">
       Código Postal es un Campo Requerido
     </p>
-    <p class="error" *ngIf="formValidator('postalcode', 'pattern')">
+    <p class="error" *ngIf="formValidator('postal_code', 'pattern')">
       Formato de Código Postal Inválido. 5 Dígitos requeridos
     </p>
 
@@ -132,8 +132,18 @@
       id="country"
     ></mat-select-country>
 
+    <!--City -->
+    <label class="label" for="city">Ciudad:</label>
+<input
+      type="text"
+      class="form-control input is-link"
+      formControlName="city"
+      id="city"
+      placeholder="Ingrese su Ciudad"
+>
+
     <!--Areas de Conocimiento-->
-    <div *ngIf="userRegistrationForm.get('role')?.value === 'professor'">
+    <div *ngIf="userRegistrationForm.get('role')?.value === 'profesor'">
       <label class="label" for="knowledgeArea">Áreas de Conocimiento:</label>
       <input
         type="text"
@@ -144,8 +154,20 @@
       />
     </div>
 
+    <!--Hourly Rate-->
+    <div *ngIf="userRegistrationForm.get('role')?.value === 'profesor'">
+      <label class="label" for="hourly_rate">Precio x Hora:</label>
+      <input
+        type="number"
+        class="form-control input is-link"
+        formControlName="hourly_rate"
+        id="hourly_rate"
+        placeholder="Ingrese el monto de sus servicios por hora"
+      />
+    </div>
+
     <!--Experiencia-->
-    <div *ngIf="userRegistrationForm.get('role')?.value === 'professor'">
+    <div *ngIf="userRegistrationForm.get('role')?.value === 'profesor'">
       <label class="label" for="experience">Experiencia:</label>
       <input
         type="number"
@@ -156,9 +178,21 @@
       />
     </div>
 
+        <!--Phone-->
+    <div *ngIf="userRegistrationForm.get('role')?.value === 'profesor'">
+      <label class="label" for="phone">Teléfono</label>
+      <input
+        type="text"
+        class="form-control input is-link"
+        formControlName="phone"
+        id="phone"
+        placeholder="Ingrese su número de teléfono"
+      />
+    </div>
+
     <!--Image -->
-    <div *ngIf="userRegistrationForm.get('role')?.value === 'professor'">
-      <label class="label" for="image">Imagen:</label>
+    <div *ngIf="userRegistrationForm.get('role')?.value === 'profesor'">
+      <label class="label" for="imageUrl">Imagen:</label>
       <input
         type="text"
         class="form-control input is-link"
@@ -169,8 +203,8 @@
     </div>
 
       <!--Description -->
-    <div *ngIf="userRegistrationForm.get('role')?.value === 'professor'">
-      <label class="label" for="image">Descripción:</label>
+    <div *ngIf="userRegistrationForm.get('role')?.value === 'profesor'">
+      <label class="label" for="description">Descripción:</label>
       <textarea
         class="form-control input is-link"
         formControlName="description"
@@ -178,6 +212,9 @@
         placeholder="Ingrese descripción de su perfil"
       ></textarea>
     </div>
+
+    <!--Status-->
+    <input type="hidden" formControlName="status" />
 
     <!--Send Form -->
     <div class="btn-container">
