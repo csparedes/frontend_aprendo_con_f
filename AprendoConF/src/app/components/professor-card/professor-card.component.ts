@@ -17,6 +17,7 @@ export class ProfessorCardComponent {
   private userService = inject(DataService);
 
   async ngOnInit() {
+    this.mensajeService.loading(true);
     try {
       const response: User[] = await this.userService.getAllActiveProfessors();
       console.log(response);
