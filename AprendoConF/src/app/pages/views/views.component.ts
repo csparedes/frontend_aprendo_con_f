@@ -183,10 +183,6 @@ export class ViewsComponent implements OnInit {
     this.dataSourceStudent = new MatTableDataSource<teacherElements>(STUDENTS);
     this.dataSourceTeacher.paginator = this.paginatorTeacher;
     this.dataSourceStudent.paginator = this.paginatorStudent;
-
-    console.log(this.dataSourceTeacher.paginator);
-    console.log(this.paginator);
-    console.log(this.paginatorStudent);
   }
 
   async getAllUser() {
@@ -196,7 +192,7 @@ export class ViewsComponent implements OnInit {
       const response = await this.dataService.getAllUsers();
       this.servicedata = [...response];
       this.cargarTablas();
-      console.log(this.servicedata);
+
       this.mensajeService.loading(false);
     } catch (error) {
       this.mensajeService.errorSerivicios();
