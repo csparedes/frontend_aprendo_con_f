@@ -199,7 +199,10 @@ export class ViewsComponent implements OnInit {
     //Llamada servicio AllUsers
     try {
       const response = await this.dataService.getAllUsers();
+      console.log(response);
+
       this.servicedata = [...response];
+
       this.cargarTablas();
       console.log(this.servicedata);
       this.mensajeService.loading(false);
