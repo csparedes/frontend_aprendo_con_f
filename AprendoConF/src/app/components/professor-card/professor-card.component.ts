@@ -3,6 +3,7 @@ import { User } from '../../interfaces/user.interface';
 import { DataService } from '../../services/data.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'src/app/services/message.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-professor-card',
@@ -15,6 +16,7 @@ export class ProfessorCardComponent {
   mensajeService = inject(MessageService);
 
   private userService = inject(DataService);
+  private authService = inject(AuthService);
 
   ngOnInit() {
     this.getUsers();
