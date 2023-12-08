@@ -1,0 +1,46 @@
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <div [routerLink]="['/pages', 'home']" routerLinkActive="active">
+      <img
+        class="img-isotipo"
+        src="./assets/images/AprendoConF.jpg"
+        alt="isotipo"
+        style="cursor: pointer"
+      />
+      <!--<a class="navbar-brand">Aprendo con F</a>-->
+    </div>
+    <div class="d-flex">
+      <button
+        class="btn btn-outline-success m-1"
+        type="button"
+        [routerLink]="['mapa']"
+      >
+        Búsqueda
+      </button>
+      <button
+        class="btn btn-outline-success m-1"
+        type="button"
+        (click)="openLoginModal()"
+      >
+        Login
+      </button>
+      <button
+        class="btn btn-outline-success m-1"
+        type="button"
+        [routerLink]="['/pages', 'newuser']"
+        routerLinkActive="active"
+      >
+        Register
+      </button>
+      <button
+        class="btn btn-outline-success m-1"
+        type="button"
+        [routerLink]="['/pages', 'views']"
+        routerLinkActive="active"
+      >
+        Administración Users
+      </button>
+    </div>
+  </div>
+</nav>
+<app-login-modal (closeLoginModalEvent)="closeLoginModal()"></app-login-modal>
