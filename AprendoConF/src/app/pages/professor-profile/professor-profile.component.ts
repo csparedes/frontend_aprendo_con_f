@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 export class ProfessorProfileComponent implements OnInit {
   oneProfessorId!: string;
   oneProfessor: User | any
+  showOpinionModal: boolean = false;
 
     userService : DataService = inject(DataService);
     activatedRoute = inject(ActivatedRoute);
@@ -30,5 +31,10 @@ export class ProfessorProfileComponent implements OnInit {
 
   getRatingImageUrl(rating: number): string {
     return `./assets/images/Puntuacion_Gold_${rating}_Stars.png`;
+  }
+
+  openTestimonials(){
+    console.log('Image clicked');
+    this.showOpinionModal = true;
   }
 }

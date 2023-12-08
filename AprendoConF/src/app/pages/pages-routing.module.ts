@@ -8,6 +8,8 @@ import { MapaComponent } from '../components/mapa/mapa.component';
 import { ProfessorProfileComponent } from './professor-profile/professor-profile.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 
+
+
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },

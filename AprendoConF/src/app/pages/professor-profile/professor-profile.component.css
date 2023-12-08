@@ -53,6 +53,12 @@
   margin-left: 20px;
 }
 
+.profile-details-img{
+  max-width: 40px; /* Adjust the maximum width as needed */
+  height: auto;
+  margin-left: 20px;
+}
+
 .nombre {
   text-align: center;
   font-weight: bold;

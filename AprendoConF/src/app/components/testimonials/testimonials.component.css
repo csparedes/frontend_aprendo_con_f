@@ -1,0 +1,36 @@
+.modal{
+  display: block;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.btn{
+  margin: 10px 5px;
+  padding: 10px;
+}
+
+.label{
+  font-weight: bold;
+}
+
+#opinion{
+  width: 600px;
+}
+
+.label {
+  float: left;
+  width: 100px; /* Adjust the width as needed */
+}
+
+input[type="number"] {
+  float: left;
+  width: 50px; /* Adjust the width as needed */
+}
+
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}

@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {StudentProfileComponent} from "./student-profile/student-profile.component";
+import { TestimonialsComponent } from '../components/testimonials/testimonials.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {StudentProfileComponent} from "./student-profile/student-profile.compone
     FooterComponent,
     ProfessorCardComponent,
     ViewsComponent,
+    TestimonialsComponent
   ],
   imports: [
     CommonModule,

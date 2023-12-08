@@ -36,6 +36,9 @@
             alt="Rating"
           />
           <img class="professor-img" src="./assets/images/Instructor.JPG" alt="Professor logo">
+          <!--Testimonials & Rating Modal -->
+          <img class="profile-details-img" src ="./assets/images/Profile_Details.JPG" alt="Profile Details" (click)="openTestimonials()">
+          <app-testimonials *ngIf="showOpinionModal" [oneProfessor]="oneProfessor" (closeModalEvent)="showOpinionModal = false"></app-testimonials>
         </div>
         <div class="info-box">
           <div class="info-top">
