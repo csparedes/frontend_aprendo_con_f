@@ -1,7 +1,15 @@
 <div class="container mt-4">
   <div *ngIf="rol">
     <!-- TABLA PROFESORES CONTROL -->
-    <p class="h2">Control de Profesores</p>
+    <div class="d-flex justify-content-between align-items-center">
+      <p class="h2">Control de Profesores</p>
+      <button
+        class="btn btn-outline-success m-1"
+        (click)="openRegisterAdminModal()"
+      >
+        Registrar Administrador
+      </button>
+    </div>
     <mat-form-field>
       <mat-label>Filtro</mat-label>
       <input
@@ -126,3 +134,7 @@
     </div>
   </div>
 </div>
+
+<!-- Modal register admin -->
+<app-register-admin-modal
+  (closeRegisterAdminModalEvent)="closeRegisterAdminModal()"></app-register-admin-modal>

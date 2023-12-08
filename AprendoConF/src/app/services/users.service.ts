@@ -27,6 +27,7 @@ export class UserService {
   getAll() {
     const data = firstValueFrom(this.httpClient.get<User[]>(this.baseUrlUsers));
     //return firstValueFrom(this.httpClient.get<User[]>(this.baseUrl));
+    console.log("data from users service");
     console.log(data);
     return data;
   }

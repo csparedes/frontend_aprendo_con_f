@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {StudentProfileComponent} from "./student-profile/student-profile.component";
+import { RegisterAdminModalComponent } from '../components/modal/register-admin-modal/register-admin-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {StudentProfileComponent} from "./student-profile/student-profile.compone
     StudentProfileComponent,
     FooterComponent,
     ProfessorCardComponent,
+    RegisterAdminModalComponent,
     ViewsComponent,
   ],
   imports: [

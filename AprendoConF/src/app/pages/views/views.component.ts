@@ -13,6 +13,7 @@ import { ViewEncapsulation } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { DataService } from 'src/app/services/data.service';
 import Swal from 'sweetalert2';
+declare var bootstrap: any;
 
 export interface teacherElements {
   nombre: string;
@@ -206,5 +207,20 @@ export class ViewsComponent implements OnInit {
     } catch (error) {
       this.mensajeService.errorSerivicios();
     }
+  }
+
+  //Modal Register new Admins
+  registerAdminModal: any;
+  openRegisterAdminModal() {
+    if (!this.registerAdminModal) {
+      this.registerAdminModal = new bootstrap.Modal(
+        document.getElementById('registerAdminModal')!
+      );
+    }
+    this.registerAdminModal.show();
+  }
+
+  closeRegisterAdminModal() {
+    if(this.registerAdminModal) this.registerAdminModal.hide();
   }
 }
