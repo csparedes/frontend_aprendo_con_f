@@ -17,6 +17,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {StudentProfileComponent} from "./student-profile/student-profile.component";
 import { TestimonialsComponent } from '../components/testimonials/testimonials.component';
 import { ProfesoresComponent } from './listas/profesores/profesores.component';
+import { AlumnosComponent } from './listas/alumnos/alumnos.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ProfesoresComponent } from './listas/profesores/profesores.component';
     ViewsComponent,
     TestimonialsComponent,
     ProfesoresComponent,
+    AlumnosComponent,
   ],
   imports: [
     CommonModule,

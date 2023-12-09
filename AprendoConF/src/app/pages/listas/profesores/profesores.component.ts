@@ -19,7 +19,7 @@ let estudiantes: alumnoselementos[] = [];
 
 export class ProfesoresComponent implements AfterViewInit{
   //Servicios
-  profesores: DataService= inject(DataService);
+  alumnos: DataService= inject(DataService);
   
   //Array tabkas
   datosprofesores:any = [];
@@ -39,7 +39,7 @@ constructor() { }
 
 async ngOnInit(): Promise<void> {  
   try {
-    this.servicedata = await this.profesores.getStudentsByProfessorId(7);
+    this.servicedata = await this.alumnos.getStudentsByProfessorId(7);
     console.log('datos:',this.servicedata);
     this.dataSource = new MatTableDataSource<any>(this.servicedata);
   }

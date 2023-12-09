@@ -1,0 +1,18 @@
+.table-bordered {
+    border-color: #007bff; 
+  }
+  
+  .table {
+    box-shadow: 0 0 10px rgba(149, 12, 12, 0.1); 
+    --bs-table-hover-color: rgb(246, 247, 248);
+    --bs-table-hover-bg: rgba(171, 148, 77, 0.493);
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
