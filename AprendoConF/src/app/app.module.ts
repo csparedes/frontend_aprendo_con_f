@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectCountryModule } from '@angular-material-extensions/select-country';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppBarComponent } from './components/app-bar/app-bar.component';
@@ -13,6 +13,7 @@ import { UserRegistrationFormComponent } from './components/user-registration-fo
 import { LoginModalComponent } from './components/modal/login-modal/login-modal.component';
 import { ProfessorCardComponent } from './components/professor-card/professor-card.component';
 import { MapaComponent } from './components/mapa/mapa.component';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,9 +31,11 @@ import { MapaComponent } from './components/mapa/mapa.component';
     NoopAnimationsModule,
     MatSelectCountryModule.forRoot('es'),
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

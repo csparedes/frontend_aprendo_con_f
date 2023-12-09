@@ -33,24 +33,14 @@ export class DataService {
   }
 
   getAllTeachers() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        authorization: localStorage.getItem('miToken')!,
-      }),
-    };
     return firstValueFrom(
-      this.httpClient.get<any>(`${this.baseUrl}prof/allProfesor`, httpOptions)
+      this.httpClient.get<any>(`${this.baseUrl}prof/allProfesor`)
     );
   }
 
   getAllStudents() {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        authorization: localStorage.getItem('miToken')!,
-      }),
-    };
     return firstValueFrom(
-      this.httpClient.get<any>(`${this.baseUrl}est/allEstudiante`, httpOptions)
+      this.httpClient.get<any>(`${this.baseUrl}est/allEstudiante`)
     );
   }
 
