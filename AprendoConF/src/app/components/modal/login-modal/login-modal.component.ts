@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/services/users.service';
 
@@ -12,9 +12,9 @@ declare var bootstrap: any;
 export class LoginModalComponent {
 
   @ViewChild('loginForm') loginForm!: NgForm
-
+  @ViewChild('loginModal') modalElement!: ElementRef;
   private modalInstance: any; 
-  @Output() closeLoginModalEvent = new EventEmitter<void>();
+   
  
 
   userServices = inject(UserService)
@@ -24,15 +24,16 @@ export class LoginModalComponent {
   constructor() {
    }
   
-  ngAfterViewInit() { 
-   //  this.modalInstance = new bootstrap.Modal(this.modalElement.nativeElement);
+   openModalhijo() { 
+    if (!this.modalInstance) {
+      this.modalInstance = new bootstrap.Modal(this.modalElement.nativeElement);
+    }
+    this.modalInstance.show();
     this.loginForm.reset();
   }
-
     cerrarModal() {
-     this.closeLoginModalEvent.emit(); 
+      this.modalInstance.hide(); 
   }
-
 
   ToggleEstadoPassword(): void{
     this.oculatarPassword = !this.oculatarPassword
@@ -40,19 +41,22 @@ export class LoginModalComponent {
   }
 
   async getDataForm(loginForm:any):Promise<void>{
-  try{
-    const response = await this.userServices.login(loginForm.value)
-    if(response.token) localStorage.setItem('miToken', response.token)
-    this.closeLoginModalEvent.emit(); 
+    if(loginForm.valid) {
+      try{
+        const response = await this.userServices.login(loginForm.value)
+        console.log(response);
+        if(response.token) localStorage.setItem('miToken', response.token)
+        this.cerrarModal(); 
+      }
+      catch(msg:any){
+        alert(msg.error.message);
+        loginForm.reset();
+       } 
+    }
+    else
+    {
+      alert('Por favor, ingrese sus datos para iniciar sesión.');
+    }
   }
-  catch(msg:any){
-    alert(msg.error.message);
-    loginForm.reset();
-   }  
 }
-}
-
-
-
-
 

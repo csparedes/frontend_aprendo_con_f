@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, ViewChild } from '@angular/core';
+import { LoginModalComponent } from '../modal/login-modal/login-modal.component';
 declare var bootstrap: any;
 @Component({
   selector: 'app-app-bar',
@@ -6,18 +7,11 @@ declare var bootstrap: any;
   styleUrls: ['./app-bar.component.css']
 })
 export class AppBarComponent {
+  @ViewChild(LoginModalComponent) loginModalComponent!: LoginModalComponent;
   loginModal: any;
 
+
   openLoginModal() {   
-
-    if(!this.loginModal) {
-        this.loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
-    }
-    this.loginModal.show();
-
+   this.loginModalComponent.openModalhijo(); 
   }
-  closeLoginModal() {
-   if(this.loginModal) this.loginModal.hide();
-  }
-
 }

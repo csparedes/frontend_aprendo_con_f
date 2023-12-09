@@ -25,12 +25,21 @@
             <input
               type="text"
               class="form-control m-1"
-              id="username"
-              name="username" 
-              ngModel
-              placeholder="Usuario"
+              id="email"
+              name="email" 
+              placeholder="@email"
+              ngModel required email
             />
           </div>
+            <div *ngIf="loginForm.controls['email'].errors?.['email'] && loginForm.controls['email'].touched" class="alert alert-danger">
+            Formato de correo electronico incorrecto
+          </div>
+
+          <div *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].touched" class="alert alert-danger">
+            El campo email es obligatorio
+          </div>
+
+
           <div class="mb-3 input-group">
             <div class="input-group-text bg-info">
               <img 
@@ -44,12 +53,15 @@
               class="form-control m-1"
               id="password"
               name="password"
-              ngModel
               placeholder="Contraseña"
+              ngModel required
             />
             <div class="input-group-text">
             <img src="{{ ImagenOjo }}" alt="Mostrar/Ocultar Contraseña" (click)="ToggleEstadoPassword()" style="cursor: pointer; height: 2rem">
             </div>
+          </div>
+          <div *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].touched" class="alert alert-danger">
+            La contraseña es obligatoria
           </div>
           <div class="mb-3 form-check d-flex justify-content-center">
             <input type="checkbox" class="form-check-input" id="rememberMe" />
