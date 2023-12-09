@@ -7,6 +7,8 @@ import { C404Component } from './c404/c404.component';
 import { MapaComponent } from '../components/mapa/mapa.component';
 import { ProfessorProfileComponent } from './professor-profile/professor-profile.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { ProfesoresComponent } from './listas/profesores/profesores.component';
+
 
 
 
@@ -17,6 +19,7 @@ const routes: Routes = [
   { path: 'professor/:id', component: ProfessorProfileComponent },
   { path: 'student/:id', component: StudentProfileComponent },
   { path: 'views', component: ViewsComponent },
+  { path: 'viewsalumnos', component: ProfesoresComponent },
   { path: '**', redirectTo: 'home' },
 ];
 

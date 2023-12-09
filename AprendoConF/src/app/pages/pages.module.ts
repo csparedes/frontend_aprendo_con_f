@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {StudentProfileComponent} from "./student-profile/student-profile.component";
 import { TestimonialsComponent } from '../components/testimonials/testimonials.component';
+import { ProfesoresComponent } from './listas/profesores/profesores.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TestimonialsComponent } from '../components/testimonials/testimonials.c
     FooterComponent,
     ProfessorCardComponent,
     ViewsComponent,
-    TestimonialsComponent
+    TestimonialsComponent,
+    ProfesoresComponent,
   ],
   imports: [
     CommonModule,

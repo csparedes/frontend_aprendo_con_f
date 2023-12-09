@@ -68,4 +68,10 @@ export class DataService {
       this.httpClient.get<User>(`${this.baseUrlstudent}/${id}`)
     );
   }
+
+  getStudentsByProfessorId(id: number) {
+    return firstValueFrom(
+      this.httpClient.get<User[]>(`${this.baseUrl}/profesor/estudiantes/${id}`)
+    );
+  }
 }
