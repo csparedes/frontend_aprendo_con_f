@@ -1,0 +1,19 @@
+<h1>Ingresa una ubicación y encuentra profesores cerca de ti</h1>
+
+
+
+<div>
+
+  <div class="formulario">
+    <form [formGroup]="formMapas" (ngSubmit)="onSubmit()">
+  
+      <input class = "buscador" type="text" #inputPlaces id="inputPlaces" formControlName="busqueda">
+      
+    </form>
+  </div>
+
+<div class="mapa" #divMap id="map"></div>
+
+</div>
+
+

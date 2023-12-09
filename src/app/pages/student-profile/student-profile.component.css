@@ -1,0 +1,81 @@
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%; /* Adjust the width of the card container as needed */
+  margin: 0 auto;
+  height: 100vh;
+}
+
+/* Add the grey border to the card */
+.border-grey {
+  border: 2px solid grey;
+}
+
+.card-small {
+  width: 100%; /* Card width set to 100% to expand with the card container */
+  max-width: 600px; /* Set a maximum width for the card if needed */
+  padding: 20px;
+}
+
+.card-grid-wrapper {
+  display: grid;
+  grid-template-columns: 60% 40%;
+  grid-template-rows: auto auto auto; /* Add a 3rd row */
+  gap: 10px;
+}
+
+.student-header {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.student-image {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  max-width: 40px;
+  height: 40px;
+  margin-left: 40%;
+}
+
+.student-details {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.student-areas {
+  grid-column: 2 / -1; /* Expand to the end of the grid */
+  grid-row: 2 / 3;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.btn-container {
+  grid-column: 1 / -1; /* Expand to the full width of the grid */
+  grid-row: 3 / 4; /* Place in the 3rd row */
+  display: flex;
+  justify-content: center; /* Center horizontally */
+}
+
+.btn-image{
+  width: 30px;
+  mix-blend-mode: multiply;
+  padding: 5px;
+}
+
+
+
+
+
+
+

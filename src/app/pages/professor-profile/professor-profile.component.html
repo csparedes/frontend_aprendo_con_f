@@ -1,0 +1,70 @@
+<div class="card-container">
+  <div class="bg-grey rounded border-grey shadow-sm card-small">
+    <div class="grid-content">
+        <div class="grid-item img-container">
+        <p class="nombre">{{ oneProfessor.name }}</p>
+        <img
+          class="square-img img-thumbnail shadow-sm user-img-large"
+          [src]="oneProfessor.imageUrl"
+          alt="{{ oneProfessor.name }}"
+        />
+        <div class="location-info">
+          <img class="pin-location" src="./assets/images/Pin_Location.JPG" />
+          <p>
+            {{ oneProfessor.city }},
+            {{ oneProfessor.country }}
+          </p>
+        </div>
+        <!--<img class="pin-location" [src]="oneProfessor.location.pinImage">{{oneProfessor.location.name}} {{oneProfessor.location.country}}-->
+        <!-- Use *ngIf to conditionally render the "Phone" section -->
+        <p class="phone label" *ngIf="oneProfessor.activo">
+          <span>Phone:</span> {{ oneProfessor.phone }}
+        </p>
+        <button
+          class="btn btn-primary m-1"
+          [routerLink]="['/pages','newuser']"
+          *ngIf="!oneProfessor.activo"
+        >
+          Registrate
+        </button>
+      </div>
+      <div class="grid-item info-container">
+        <div class="rating">
+          <img
+            class="rating-img"
+            [src]="getRatingImageUrl(oneProfessor.rating)"
+            alt="Rating"
+          />
+          <img class="professor-img" src="./assets/images/Instructor.JPG" alt="Professor logo">
+        </div>
+        <div class="info-box">
+          <div class="info-top">
+            <p><span class="label">Email:</span> {{ oneProfessor.email }}</p>
+            <p>
+              <span class="label">Precio x Hora:</span> {{ oneProfessor.hourly_rate | currency: 'GBP' }}
+            </p>
+            <h2 class="label">Areas de Conocimiento</h2>
+            <ul class="knowledge-areas" *ngIf="oneProfessor.areas">
+              <li *ngFor="let area of oneProfessor.areas">
+                <span class="bullet">&#8226;</span> {{ area }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="description">
+          <p>{{ oneProfessor.description }}</p>
+        </div>
+        <!-- Move "Volver a listado" to the bottom of the second column -->
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-primary m-1" [routerLink]="['/pages','home']">
+            <img
+              class="btn-image"
+              src="assets/images/Home.GIF"
+              alt="home"
+            />Regresar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
