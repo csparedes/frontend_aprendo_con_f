@@ -32,23 +32,6 @@ export class TestimonialsComponent {
     // Maneja el error de manera apropiada, por ejemplo, mostrando un mensaje al usuario.
   });
 }
-
-//   async submitOpinion(): Promise<void> {
-//   console.log(`Rating: ${this.rating}, Opinión: ${this.opinion}`);
-//
-//   try {
-//     const response = await this.dataService.updateReviewRating(this.oneProfessor.id, {
-//       rating: this.rating,
-//       review: this.opinion
-//     });
-//
-//     console.log('Actualización exitosa', response);
-//     this.closeModal();
-//   } catch (error) {
-//     console.error('Error al actualizar la calificación y revisión', error);
-//   }
-// }
-
   closeModal() {
     this.closeModalEvent.emit();
 
