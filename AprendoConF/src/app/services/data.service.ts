@@ -76,4 +76,16 @@ export class DataService {
       return false;
     }
   }
+
+  getStudentsByProfessorId(id: number) {
+    return firstValueFrom(
+      this.httpClient.get<User[]>(`${this.baseUrl}/profesor/estudiantes/${id}`)
+    );
+  }
+
+  getProfesoresByStudentId(id: number) {
+    return firstValueFrom(
+      this.httpClient.get<User[]>(`${this.baseUrl}/student/profesores/${id}`)
+    );
+  }
 }

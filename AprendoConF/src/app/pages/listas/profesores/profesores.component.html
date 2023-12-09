@@ -1,0 +1,40 @@
+<div class="container mt-4">
+    <table mat-table [dataSource]= "dataSource" matSort class="mat-elevation-z8" class="table table-hover">
+  
+      <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-primary text-white"> No. </th>
+          <td mat-cell *matCellDef="let element; let i = index"> {{i+1}} </td>
+        </ng-container>
+     
+      <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-primary text-white"> Nombre </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-primary text-white"> Email </th>
+        <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+     <ng-container matColumnDef="areas">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header class="bg-primary text-white"> Areas </th>
+      <td mat-cell *matCellDef="let element"> {{element.areas}} </td>
+      </ng-container>
+     
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns">
+      </tr>
+    
+    
+       <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selecuser(row)" 
+       routerLink="/pages/student/{{row.id}}"
+       >
+        
+       </tr>
+    
+  </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  
+  
+    </div>
