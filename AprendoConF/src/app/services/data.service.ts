@@ -8,7 +8,7 @@ import { User, sendStatus } from '../interfaces/user.interface';
   providedIn: 'root',
 })
 export class DataService {
-  private baseUrl = 'http://localhost:3001/api/users';
+  private baseUrl = 'http://localhost:3001/api/users/';
 
   private baseUrlprofessor: string =
     'http://localhost:3001/api/users/profesores/activo';

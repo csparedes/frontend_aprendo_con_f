@@ -23,8 +23,17 @@ export interface teacherElements {
   selected: boolean;
 }
 
+export interface studentsElement {
+  nombre: string;
+  city: string;
+  ubicacion: string;
+  correo: string;
+  estado: string;
+  selected: boolean;
+}
+
 let TEACHERS: teacherElements[] = [];
-let STUDENTS: teacherElements[] = [];
+let STUDENTS: studentsElement[] = [];
 
 @Component({
   selector: 'app-views',
@@ -40,7 +49,8 @@ export class ViewsComponent implements OnInit {
   //Arrays tables
   teachersData: any[] = [];
   students: any[] = [];
-  servicedata: User[] = [];
+  servicedataStudents: User[] = [];
+  servicedataTeachers: User[] = [];
   stateInterface: sendStatus = { status: '' };
 
   //Variables
@@ -56,14 +66,14 @@ export class ViewsComponent implements OnInit {
   ];
   displayedColumnsStudents: string[] = [
     'nombre',
-    'rama',
+    'ciudad',
     'ubicacion',
     'correo',
     'estado',
     'check',
   ];
   dataSourceTeacher = new MatTableDataSource<teacherElements>(TEACHERS);
-  dataSourceStudent = new MatTableDataSource<teacherElements>(STUDENTS);
+  dataSourceStudent = new MatTableDataSource<studentsElement>(STUDENTS);
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -74,7 +84,7 @@ export class ViewsComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.servicedata = [];
+    //this.servicedata = [];
     TEACHERS = [];
     STUDENTS = [];
     this.getAllUser();
@@ -147,41 +157,40 @@ export class ViewsComponent implements OnInit {
     let student = {
       id: 0,
       nombre: '',
-      rama: '',
+      city: '',
       ubicacion: '',
       correo: '',
       estado: '',
       selected: true,
     };
-    this.servicedata.forEach((element) => {
-      if (element.role == 'profesor') {
-        teacher = {
-          id: element.id,
-          nombre: element.name,
-          rama: element.country,
-          ubicacion: element.country,
-          correo: element.email,
-          estado: element.status,
-          selected: element.status == 'activo' ? true : false,
-        };
-        TEACHERS.push(teacher);
-      } else if (element.role == 'estudiante') {
-        student = {
-          id: element.id,
-          nombre: element.name,
-          rama: element.country,
-          ubicacion: element.country,
-          correo: element.email,
-          estado: element.status,
-          selected: element.status == 'activo' ? true : false,
-        };
-        STUDENTS.push(student);
-      }
-      //this.teachersData = [...TEACHERS];
+
+    this.servicedataStudents.forEach((estudiante) => {
+      student = {
+        id: estudiante.id,
+        nombre: estudiante.name,
+        city: estudiante.city,
+        ubicacion: estudiante.country,
+        correo: estudiante.email,
+        estado: estudiante.status,
+        selected: estudiante.status == 'activo' ? true : false,
+      };
+      STUDENTS.push(student);
+    });
+    this.servicedataTeachers.forEach((profesor) => {
+      teacher = {
+        id: profesor.id,
+        nombre: profesor.name,
+        rama: profesor.areas,
+        ubicacion: profesor.country,
+        correo: profesor.email,
+        estado: profesor.status,
+        selected: profesor.status == 'activo' ? true : false,
+      };
+      TEACHERS.push(teacher);
     });
 
     this.dataSourceTeacher = new MatTableDataSource<teacherElements>(TEACHERS);
-    this.dataSourceStudent = new MatTableDataSource<teacherElements>(STUDENTS);
+    this.dataSourceStudent = new MatTableDataSource<studentsElement>(STUDENTS);
     this.dataSourceTeacher.paginator = this.paginatorTeacher;
     this.dataSourceStudent.paginator = this.paginatorStudent;
   }
@@ -191,12 +200,13 @@ export class ViewsComponent implements OnInit {
     //Llamada servicio AllUsers
     try {
       const response = await this.dataService.getAllUsers();
-      const responseStudents = await this.dataService.getAllActiveStudents();
-      const responseProfesors = await this.dataService.getAllActiveProfessors();
+      const responseStudents = await this.dataService.getAllStudents();
+      const responseProfesors = await this.dataService.getAllTeachers();
       console.log(responseStudents);
       console.log(responseProfesors);
 
-      this.servicedata = [...response];
+      this.servicedataStudents = [...responseStudents];
+      this.servicedataTeachers = [...responseProfesors];
 
       this.cargarTablas();
       //console.log(this.servicedata);

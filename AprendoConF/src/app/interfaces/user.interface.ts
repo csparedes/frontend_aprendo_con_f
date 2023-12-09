@@ -8,7 +8,7 @@ export interface User {
   postal_code: string;
   country: string;
   city: string;
-  areas?: string[];
+  areas?: any;
   experience?: any;
   imageUrl: string;
   description: string;
