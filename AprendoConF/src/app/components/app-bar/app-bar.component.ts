@@ -1,6 +1,7 @@
 import { Component, EventEmitter, ViewChild, inject } from '@angular/core';
 import { LoginModalComponent } from '../modal/login-modal/login-modal.component';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/services/data.service';
 declare var bootstrap: any;
 @Component({
   selector: 'app-app-bar',
@@ -12,6 +13,7 @@ export class AppBarComponent {
   loginModal: any;
 
   router = inject(Router);
+  public dataService = inject(DataService);
 
   openLoginModal() {
     this.loginModalComponent.openModalhijo();

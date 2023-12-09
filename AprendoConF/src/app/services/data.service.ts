@@ -68,4 +68,12 @@ export class DataService {
       this.httpClient.get<User>(`${this.baseUrlstudent}/${id}`)
     );
   }
+
+  isLogged(): boolean {
+    if (localStorage.getItem('miToken')) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
