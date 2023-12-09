@@ -21,8 +21,8 @@ export class ProfessorCardComponent {
   }
 
   async getUsers() {
-    this.mensajeService.loading(true);
     try {
+      this.mensajeService.loading(true);
       const response: User[] = await this.userService.getAllActiveProfessors();
       console.log(response);
       this.professorCard = response;
