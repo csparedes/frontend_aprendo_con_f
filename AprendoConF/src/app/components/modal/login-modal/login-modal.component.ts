@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Output, ViewChild, inject } from '@angular/core';
+import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { MessageService } from 'src/app/services/message.service';
 import { UserService } from 'src/app/services/users.service';
 
 declare var bootstrap: any;
@@ -7,52 +9,64 @@ declare var bootstrap: any;
 @Component({
   selector: 'app-login-modal',
   templateUrl: './login-modal.component.html',
-  styleUrls: ['./login-modal.component.css']
+  styleUrls: ['./login-modal.component.css'],
 })
 export class LoginModalComponent {
+  @ViewChild('loginForm') loginForm!: NgForm;
+  @ViewChild('loginModal') modalElement!: ElementRef;
+  private modalInstance: any;
 
-  @ViewChild('loginForm') loginForm!: NgForm
+  userServices = inject(UserService);
+  router = inject(Router);
+  messageService = inject(MessageService);
+  oculatarPassword: boolean = true;
+  ImagenOjo = 'assets/images/eye-l.svg';
+  mensajeError = '';
+  errorView: boolean = false;
 
-  private modalInstance: any; 
-  @Output() closeLoginModalEvent = new EventEmitter<void>();
- 
+  constructor() {}
 
-  userServices = inject(UserService)
-  oculatarPassword:boolean=true
-  ImagenOjo= 'assets/images/eye-l.svg'
-
-  constructor() {
-   }
-  
-  ngAfterViewInit() { 
-   //  this.modalInstance = new bootstrap.Modal(this.modalElement.nativeElement);
+  openModalhijo() {
+    if (!this.modalInstance) {
+      this.modalInstance = new bootstrap.Modal(this.modalElement.nativeElement);
+    }
+    this.modalInstance.show();
     this.loginForm.reset();
   }
-
-    cerrarModal() {
-     this.closeLoginModalEvent.emit(); 
+  cerrarModal() {
+    this.modalInstance.hide();
   }
 
-
-  ToggleEstadoPassword(): void{
-    this.oculatarPassword = !this.oculatarPassword
-    this.ImagenOjo = this.oculatarPassword? 'assets/images/eye-l.svg': 'assets/images/eye.svg'
+  ToggleEstadoPassword(): void {
+    this.oculatarPassword = !this.oculatarPassword;
+    this.ImagenOjo = this.oculatarPassword
+      ? 'assets/images/eye-l.svg'
+      : 'assets/images/eye.svg';
   }
 
-  async getDataForm(loginForm:any):Promise<void>{
-  try{
-    const response = await this.userServices.login(loginForm.value)
-    if(response.token) localStorage.setItem('miToken', response.token)
-    this.closeLoginModalEvent.emit(); 
+  async getDataForm(loginForm: any): Promise<void> {
+    this.messageService.loading(true);
+    if (loginForm.valid) {
+      try {
+        const response = await this.userServices.login(loginForm.value);
+        console.log(response);
+        const { respuesta, mensaje } = response;
+        this.messageService.loading(false);
+        if (respuesta) {
+          if (response.token) localStorage.setItem('miToken', response.token);
+          this.cerrarModal();
+          loginForm.reset();
+          this.router.navigate(['pages', 'home']);
+        } else {
+          this.errorView = !respuesta;
+          this.mensajeError = mensaje;
+        }
+      } catch (msg: any) {
+        alert(msg.error.message);
+        loginForm.reset();
+      }
+    } else {
+      alert('Por favor, ingrese sus datos para iniciar sesión.');
+    }
   }
-  catch(msg:any){
-    alert(msg.error.message);
-    loginForm.reset();
-   }  
 }
-}
-
-
-
-
-

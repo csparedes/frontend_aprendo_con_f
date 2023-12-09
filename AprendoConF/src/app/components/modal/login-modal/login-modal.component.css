@@ -1,5 +1,5 @@
 .modal {
-    z-index: 2050; /* Asegúrate de que este valor sea mayor que el z-index del modal-backdrop */
+    z-index: 2050; 
 }
 
 .modal-backdrop {

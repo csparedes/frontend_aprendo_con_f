@@ -24,3 +24,7 @@ export interface User {
 export interface sendStatus {
   status: string;
 }
+
+export interface sendCreddentials {
+  status: string;
+}

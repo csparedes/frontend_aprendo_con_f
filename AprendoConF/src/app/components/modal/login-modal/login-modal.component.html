@@ -1,5 +1,6 @@
 <div
-#loginModal class="modal fade"
+  #loginModal
+  class="modal fade"
   id="loginModal"
   tabindex="-1"
   aria-labelledby="loginModalLabel"
@@ -8,60 +9,110 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content bg-light border border-success rounded-5">
       <div class="modal-header text-center">
-          <h5 class="modal-title w-100" id="loginModalLabel">
-           <img src="assets/images/logo2.png" class="mx-auto d-block"  alt="Logo" style="height: 9rem" />
-          </h5>
+        <h5 class="modal-title w-100" id="loginModalLabel">
+          <img
+            src="assets/images/logo2.png"
+            class="mx-auto d-block"
+            alt="Logo"
+            style="height: 9rem"
+          />
+        </h5>
       </div>
       <div class="modal-body">
         <form #loginForm="ngForm" (ngSubmit)="getDataForm(loginForm)">
           <div class="mb-3 input-group">
-            <div class="input-group-text bg-info ">
-              <img 
-                  src="assets/images/username-icon.svg" 
-                  alt="login-icono" 
-                  style="height: 1rem"
-               />
+            <div class="input-group-text bg-info">
+              <img
+                src="assets/images/username-icon.svg"
+                alt="login-icono"
+                style="height: 1rem"
+              />
             </div>
             <input
               type="text"
               class="form-control m-1"
-              id="username"
-              name="username" 
+              id="email"
+              name="email"
+              placeholder="@email"
               ngModel
-              placeholder="Usuario"
+              required
+              email
             />
           </div>
+          <div
+            *ngIf="loginForm.controls['email'].errors?.['email'] && loginForm.controls['email'].touched"
+            class="alert alert-danger"
+          >
+            Formato de correo electronico incorrecto
+          </div>
+
+          <div
+            *ngIf="
+              loginForm.controls['email'].errors &&
+              loginForm.controls['email'].touched
+            "
+            class="alert alert-danger"
+          >
+            El campo email es obligatorio
+          </div>
+
           <div class="mb-3 input-group">
             <div class="input-group-text bg-info">
-              <img 
-                  src="assets/images/password-icon.svg" 
-                  alt="login-icono" 
-                  style="height: 1rem"
-               />
+              <img
+                src="assets/images/password-icon.svg"
+                alt="login-icono"
+                style="height: 1rem"
+              />
             </div>
             <input
-              [type]="oculatarPassword?'password': 'text'"
+              [type]="oculatarPassword ? 'password' : 'text'"
               class="form-control m-1"
               id="password"
               name="password"
-              ngModel
               placeholder="Contraseña"
+              ngModel
+              required
             />
             <div class="input-group-text">
-            <img src="{{ ImagenOjo }}" alt="Mostrar/Ocultar Contraseña" (click)="ToggleEstadoPassword()" style="cursor: pointer; height: 2rem">
+              <img
+                src="{{ ImagenOjo }}"
+                alt="Mostrar/Ocultar Contraseña"
+                (click)="ToggleEstadoPassword()"
+                style="cursor: pointer; height: 2rem"
+              />
             </div>
+          </div>
+          <div *ngIf="errorView">
+            <p class="alert alert-danger">{{ mensajeError }}</p>
+          </div>
+          <div
+            *ngIf="
+              loginForm.controls['password'].errors &&
+              loginForm.controls['password'].touched
+            "
+            class="alert alert-danger"
+          >
+            La contraseña es obligatoria
           </div>
           <div class="mb-3 form-check d-flex justify-content-center">
             <input type="checkbox" class="form-check-input" id="rememberMe" />
             <label class="form-check-label" for="rememberMe">Recuérdame</label>
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Iniciar sesión</button>
-             <button type="button" class="btn btn-secondary m-1" data-bs-dismiss="modal" aria-label="Close">Cerrar</button>
+            <button type="submit" class="btn btn-primary">
+              Iniciar sesión
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary m-1"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              Cerrar
+            </button>
           </div>
         </form>
       </div>
-      
     </div>
   </div>
 </div>
