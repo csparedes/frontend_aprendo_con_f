@@ -50,10 +50,10 @@ export class LoginModalComponent {
       try {
         const response = await this.userServices.login(loginForm.value);
         console.log(response);
-        const { respuesta, mensaje } = response;
+        const { respuesta, mensaje, resultado } = response;
         this.messageService.loading(false);
         if (respuesta) {
-          if (response.token) localStorage.setItem('miToken', response.token);
+          localStorage.setItem('miToken', resultado);
           this.cerrarModal();
           loginForm.reset();
           this.router.navigate(['pages', 'home']);
