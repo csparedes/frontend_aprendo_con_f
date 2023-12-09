@@ -140,6 +140,10 @@ export class UserRegistrationFormComponent {
       this.message.errorSerivicios();
     }
   }
+  //Knowledge Area
+
+
+
 
   formValidator(
     formControlName: string,

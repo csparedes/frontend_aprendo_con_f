@@ -12,8 +12,12 @@ export class DataService {
 
   private baseUrlprofessor: string =
     'http://localhost:3001/api/users/profesores/activo';
+
   private baseUrlstudent: string =
-    'http://localhost:3001/api/users/estudiante/activo';
+    'http://localhost:3001/api/users/student/activo';
+
+  private baseUrlenrollment : string = 'http://localhost:3001/api/enrollments';
+
 
   private httpClient = inject(HttpClient);
 
@@ -54,4 +58,9 @@ export class DataService {
       this.httpClient.get<User>(`${this.baseUrlstudent}/${id}`)
     );
   }
+
+  updateReviewRating(enrollmentId: number, data: { rating: number, review: string }) {
+  return this.httpClient.put(`${this.baseUrlenrollment}/${enrollmentId}`, data);
+ }
+
 }
