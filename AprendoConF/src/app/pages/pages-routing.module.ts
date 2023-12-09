@@ -7,13 +7,15 @@ import { C404Component } from './c404/c404.component';
 import { MapaComponent } from '../components/mapa/mapa.component';
 import { ProfessorProfileComponent } from './professor-profile/professor-profile.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
-
-
+import { authGuard } from '../core/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
-  { path: 'newuser', component: UserRegistrationFormComponent },
+  {
+    path: 'newuser',
+    component: UserRegistrationFormComponent,
+  },
   { path: 'professor/:id', component: ProfessorProfileComponent },
   { path: 'student/:id', component: StudentProfileComponent },
   { path: 'views', component: ViewsComponent },

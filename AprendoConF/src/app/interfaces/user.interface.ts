@@ -24,3 +24,8 @@ export interface User {
 export interface sendStatus {
   status: string;
 }
+
+export interface loginBody {
+  email: string;
+  password: string;
+}
