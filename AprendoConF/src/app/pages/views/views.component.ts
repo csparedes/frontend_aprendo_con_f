@@ -134,7 +134,6 @@ export class ViewsComponent implements OnInit {
   }
 
   cargarTablas() {
-    console.log(this.servicedata);
     let teacher = {
       id: 0,
       nombre: '',
@@ -181,17 +180,10 @@ export class ViewsComponent implements OnInit {
       //this.teachersData = [...TEACHERS];
     });
 
-    console.log(STUDENTS);
-    console.log(TEACHERS);
-
     this.dataSourceTeacher = new MatTableDataSource<teacherElements>(TEACHERS);
     this.dataSourceStudent = new MatTableDataSource<teacherElements>(STUDENTS);
     this.dataSourceTeacher.paginator = this.paginatorTeacher;
     this.dataSourceStudent.paginator = this.paginatorStudent;
-
-    console.log(this.dataSourceTeacher.paginator);
-    console.log(this.paginator);
-    console.log(this.paginatorStudent);
   }
 
   async getAllUser() {
@@ -199,12 +191,15 @@ export class ViewsComponent implements OnInit {
     //Llamada servicio AllUsers
     try {
       const response = await this.dataService.getAllUsers();
-      console.log(response);
+      const responseStudents = await this.dataService.getAllActiveStudents();
+      const responseProfesors = await this.dataService.getAllActiveProfessors();
+      console.log(responseStudents);
+      console.log(responseProfesors);
 
       this.servicedata = [...response];
 
       this.cargarTablas();
-      console.log(this.servicedata);
+      //console.log(this.servicedata);
       this.mensajeService.loading(false);
     } catch (error) {
       this.mensajeService.errorSerivicios();

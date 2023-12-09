@@ -22,7 +22,7 @@ export class UserRegistrationFormComponent {
   activatedRoute = inject(ActivatedRoute);
   router = inject(Router);
   message = inject(MessageService);
-  private authService = inject(AuthService);
+  authService = inject(AuthService);
 
   errorUserMessage(mensaje: string) {
     Swal.fire(mensaje);

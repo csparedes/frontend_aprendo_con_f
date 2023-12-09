@@ -19,15 +19,29 @@ export class DataService {
 
   async insertUser(formValue: any): Promise<User> {
     try {
-      return await firstValueFrom(this.httpClient.post<User>(this.baseUrl, formValue));
+      return await firstValueFrom(
+        this.httpClient.post<User>(this.baseUrl, formValue)
+      );
     } catch (error) {
       console.error('Error inserting user:', error);
       throw error;
     }
-}
+  }
 
   getAllUsers() {
     return firstValueFrom(this.httpClient.get<User[]>(this.baseUrl));
+  }
+
+  getAllTeachers() {
+    return firstValueFrom(
+      this.httpClient.get<User[]>(`${this.baseUrl}prof/allProfesor`)
+    );
+  }
+
+  getAllStudents() {
+    return firstValueFrom(
+      this.httpClient.get<User[]>(`${this.baseUrl}est/allEstudiante`)
+    );
   }
 
   updateState(id: number, status: sendStatus) {
