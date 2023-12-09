@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
@@ -33,14 +33,24 @@ export class DataService {
   }
 
   getAllTeachers() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        authorization: localStorage.getItem('miToken')!,
+      }),
+    };
     return firstValueFrom(
-      this.httpClient.get<User[]>(`${this.baseUrl}prof/allProfesor`)
+      this.httpClient.get<any>(`${this.baseUrl}prof/allProfesor`, httpOptions)
     );
   }
 
   getAllStudents() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        authorization: localStorage.getItem('miToken')!,
+      }),
+    };
     return firstValueFrom(
-      this.httpClient.get<User[]>(`${this.baseUrl}est/allEstudiante`)
+      this.httpClient.get<any>(`${this.baseUrl}est/allEstudiante`, httpOptions)
     );
   }
 
