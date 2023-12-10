@@ -29,9 +29,7 @@ export class ProfessorCardComponent {
       console.log(localStorage.getItem('miToken'));
       console.log(proffesor_id);
       console.log(this.oneStudent);
-
       var token = localStorage.getItem('miToken');
-
       function decodeJWT(token: any) {
         const base64Url = token.split('.')[1];
         const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -48,22 +46,14 @@ export class ProfessorCardComponent {
       }
 
       var infoUser = decodeJWT(token);
+      console.log(infoUser);
 
-      var emailUser = infoUser.user_data.email;
-
+      var userId = infoUser.id;
       var idUser;
-
-      let j;
-
-      for (j = 0; j < this.oneStudent.length; j++) {
-        if (this.oneStudent[j].email == emailUser) {
-          idUser = this.oneStudent[j].id;
-        }
-      }
 
       this.userService
         .createNewEnrollment({
-          student_id: idUser,
+          student_id: userId,
           teacher_id: proffesor_id,
         })
         .subscribe(
