@@ -20,7 +20,7 @@ export class AutorizacionService {
   login(datos:any) {
     localStorage.setItem('miToken', datos);
     function decodeJWT(token: any) {
-    var token = localStorage.getItem('miToken');  
+    token = localStorage.getItem('miToken');  
         const base64Url = token.split('.')[1];
     const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
     const jsonPayload = decodeURIComponent(
@@ -34,7 +34,7 @@ export class AutorizacionService {
     );
     return JSON.parse(jsonPayload);
     }
-    this.infoUser = decodeJWT(token);
+    this.infoUser = decodeJWT(datos); 
     console.log(this.infoUser);
     const user={id:this.infoUser.id, rol: this.infoUser.rol};
     return this.usuarioactual.next(user);
