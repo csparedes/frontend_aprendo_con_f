@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MessageService } from 'src/app/services/message.service';
 import { UserService } from 'src/app/services/users.service';
+import { AutentificacionService } from 'src/app/services/autentificacion.service';
 
 declare var bootstrap: any;
 
@@ -24,6 +25,7 @@ export class LoginModalComponent {
   mensajeError = '';
   errorView: boolean = false;
 
+  private autentificacionService = inject(AutentificacionService);  
   constructor() {}
 
   openModalhijo() {
@@ -50,10 +52,11 @@ export class LoginModalComponent {
       try {
         const response = await this.userServices.login(loginForm.value);
         console.log(response);
-        const { respuesta, mensaje, resultado } = response;
+        const { respuesta, mensaje, resultado, id, rol } = response;
         this.messageService.loading(false);
         if (respuesta) {
-          localStorage.setItem('miToken', resultado);
+          //localStorage.setItem('miToken', resultado);
+          this.autentificacionService.login(resultado, id, rol);
           this.cerrarModal();
           loginForm.reset();
           this.router.navigate(['pages', 'home']);
@@ -69,4 +72,5 @@ export class LoginModalComponent {
       alert('Por favor, ingrese sus datos para iniciar sesión.');
     }
   }
+  
 }
