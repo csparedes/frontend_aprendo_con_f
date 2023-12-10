@@ -4,6 +4,7 @@ import { DataService } from '../../services/data.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'src/app/services/message.service';
 import { AuthService } from 'src/app/services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-professor-card',
@@ -25,7 +26,7 @@ export class ProfessorCardComponent {
   }
 
   suscribete(proffesor_id: any) {
-    if ('miToken' in localStorage == true) {
+    if (this.userService.isLogged()) {
       console.log(localStorage.getItem('miToken'));
       console.log(proffesor_id);
       console.log(this.oneStudent);
@@ -59,7 +60,17 @@ export class ProfessorCardComponent {
         .subscribe(
           (response) => {
             console.log('Actualización exitosa', response);
-            window.alert('Suscripción exitosa');
+            Swal.fire({
+              title: 'Creación Exitosa.',
+              text: `Ahora se encuentra subscrito al profesor`,
+              icon: 'info',
+              confirmButtonColor: '#5fc1c5   ',
+              confirmButtonText: 'Aceptar',
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.reload();
+              }
+            });
           },
           (error) => {
             console.error(
