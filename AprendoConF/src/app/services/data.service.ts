@@ -16,6 +16,8 @@ export class DataService {
     'http://localhost:3001/api/users/estudiante/activo';
   private baseUbicaciones: string =
     'http://localhost:3001/api/users/datos/profesor';
+  private baseUrProfesByStudents: string =
+    'http://localhost:3001/api/users/student/profesores/';
 
   private httpClient = inject(HttpClient);
 
@@ -97,5 +99,11 @@ export class DataService {
 
   getLocations() {
     return firstValueFrom(this.httpClient.get<User[]>(this.baseUbicaciones));
+  }
+
+  getprofesoresDeEstudiante(id: number) {
+    return firstValueFrom(
+      this.httpClient.get<any>(`${this.baseUrProfesByStudents}${id}`)
+    );
   }
 }

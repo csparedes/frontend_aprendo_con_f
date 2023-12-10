@@ -7,7 +7,7 @@
       <div class="card mb-4">
         <div class="card-body">
           <div class="user-info">
-            <p class="user_name">{{ professor.name }}</p>
+            <p class="user_name">{{ professor.name }} {{ userId }}</p>
             <img
               class="rating"
               [src]="getRatingImageUrl(professor.rating)"
@@ -64,14 +64,44 @@
               >
                 Pérfil
               </button>
-              <button
-                (click)="suscribete(professor.id)"
-                class="btn btn-primary"
-                type="button"
-                name="professor.id"
+              <div
+                *ngIf="
+                  !arrTeachers.includes(professor.id) && !userService.isLogged()
+                "
               >
-                Subscribete
-              </button>
+                <button
+                  (click)="suscribete(professor.id)"
+                  class="btn btn-primary"
+                  type="button"
+                  name="professor.id"
+                >
+                  Subscribete
+                </button>
+              </div>
+              <div
+                *ngIf="
+                  !arrTeachers.includes(professor.id) && userService.isLogged()
+                "
+              >
+                <button
+                  (click)="suscribete(professor.id)"
+                  class="btn btn-primary"
+                  type="button"
+                  name="professor.id"
+                >
+                  Subscribete
+                </button>
+              </div>
+              <div *ngIf="arrTeachers.includes(professor.id)">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  name="professor.id"
+                  disabled="true"
+                >
+                  Subscrito
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -23,6 +23,7 @@ export class AppBarComponent {
     if (localStorage.getItem('miToken')) {
       localStorage.removeItem('miToken');
       this.router.navigate(['/pages']);
+      window.location.reload();
     }
   }
 }

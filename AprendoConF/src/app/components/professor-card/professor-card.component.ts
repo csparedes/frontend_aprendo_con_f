@@ -16,20 +16,17 @@ export class ProfessorCardComponent {
   router = inject(Router);
   mensajeService = inject(MessageService);
   oneStudent: any;
+  userId: any;
+  infoUser: any;
+  idUser: any;
+  arrTeachers: any[] = [];
 
-  private userService = inject(DataService);
+  public userService = inject(DataService);
   private authService = inject(AuthService);
 
   async ngOnInit() {
-    this.getUsers();
-    this.oneStudent = await this.userService.getAllUsers();
-  }
-
-  suscribete(proffesor_id: any) {
     if (this.userService.isLogged()) {
       console.log(localStorage.getItem('miToken'));
-      console.log(proffesor_id);
-      console.log(this.oneStudent);
       var token = localStorage.getItem('miToken');
       function decodeJWT(token: any) {
         const base64Url = token.split('.')[1];
@@ -46,20 +43,28 @@ export class ProfessorCardComponent {
         return JSON.parse(jsonPayload);
       }
 
-      var infoUser = decodeJWT(token);
-      console.log(infoUser);
+      this.infoUser = decodeJWT(token);
+      console.log(this.infoUser);
+      this.userId = this.infoUser.id;
+      this.idUser;
+    }
+    this.teacherByStudent();
+    this.getUsers();
+    this.oneStudent = await this.userService.getAllUsers();
+  }
 
-      var userId = infoUser.id;
-      var idUser;
-
+  suscribete(proffesor_id: any) {
+    if (this.userService.isLogged()) {
+      this.mensajeService.loading(true);
       this.userService
         .createNewEnrollment({
-          student_id: userId,
+          student_id: this.userId,
           teacher_id: proffesor_id,
         })
         .subscribe(
           (response) => {
             console.log('Actualización exitosa', response);
+            this.mensajeService.loading(false);
             Swal.fire({
               title: 'Creación Exitosa.',
               text: `Ahora se encuentra subscrito al profesor`,
@@ -87,6 +92,7 @@ export class ProfessorCardComponent {
 
   async getUsers() {
     this.mensajeService.loading(true);
+
     try {
       const response: User[] = await this.userService.getAllActiveProfessors();
       console.log(response);
@@ -101,5 +107,20 @@ export class ProfessorCardComponent {
   }
   getRatingImageUrl(rating: number): string {
     return `./assets/images/Puntuacion_Gold_${rating}_Stars.png`;
+  }
+
+  async teacherByStudent() {
+    this.mensajeService.loading(true);
+    try {
+      const data = await this.userService.getprofesoresDeEstudiante(
+        this.userId
+      );
+      for (const el of data) {
+        console.log(el);
+        this.arrTeachers.push(el.id);
+      }
+      this.mensajeService.loading(false);
+      console.log(this.arrTeachers);
+    } catch (error) {}
   }
 }
