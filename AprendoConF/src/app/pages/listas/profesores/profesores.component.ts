@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ViewChild, inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from 'src/app/interfaces/user.interface';
+import { AutorizacionService } from 'src/app/services/autorizacion.service';
 import { DataService } from 'src/app/services/data.service';
 
 export interface alumnoselementos {
@@ -20,6 +21,8 @@ let estudiantes: alumnoselementos[] = [];
 export class ProfesoresComponent implements AfterViewInit{
   //Servicios
   alumnos: DataService= inject(DataService);
+  private autorizacion= inject(AutorizacionService);
+  private idprofesor: number = 0;  
   
   //Array tabkas
   datosprofesores:any = [];
@@ -38,8 +41,9 @@ constructor() { }
 
 
 async ngOnInit(): Promise<void> {  
+  this.idprofesor = this.autorizacion.currentUserValue.id;
   try {
-    this.servicedata = await this.alumnos.getStudentsByProfessorId(7);
+    this.servicedata = await this.alumnos.getStudentsByProfessorId(this.idprofesor);
     console.log('datos:',this.servicedata);
     this.dataSource = new MatTableDataSource<any>(this.servicedata);
   }

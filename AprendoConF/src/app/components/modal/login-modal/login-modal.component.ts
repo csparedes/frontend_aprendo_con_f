@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AutorizacionService } from 'src/app/services/autorizacion.service';
 import { MessageService } from 'src/app/services/message.service';
 import { UserService } from 'src/app/services/users.service';
 
@@ -24,6 +25,7 @@ export class LoginModalComponent {
   mensajeError = '';
   errorView: boolean = false;
 
+  private autorizacionService = inject(AutorizacionService)
   constructor() {}
 
   openModalhijo() {
@@ -50,10 +52,11 @@ export class LoginModalComponent {
       try {
         const response = await this.userServices.login(loginForm.value);
         console.log(response);
-        const { respuesta, mensaje, resultado } = response;
+          const { respuesta, mensaje, resultado } = response;
         this.messageService.loading(false);
         if (respuesta) {
-          localStorage.setItem('miToken', resultado);
+          //localStorage.setItem('miToken', resultado);
+          this.autorizacionService.login(resultado);
           this.cerrarModal();
           loginForm.reset();
           this.router.navigate(['pages', 'home']);
@@ -70,4 +73,5 @@ export class LoginModalComponent {
       alert('Por favor, ingrese sus datos para iniciar sesión.');
     }
   }
+  
 }

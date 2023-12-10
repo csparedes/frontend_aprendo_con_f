@@ -39,7 +39,7 @@
         type="button"
         [routerLink]="['/pages', 'views']"
         routerLinkActive="active"
-        *ngIf="dataService.isLogged()"
+        *ngIf="usuarioActual.rol=='administrador'"
       >
         Administración Users
       </button>
@@ -52,21 +52,21 @@
         Cerrar Sesión
       </button>
 
-      <button
+       <button *ngIf="usuarioActual.rol=='profesor'"
         class="btn btn-outline-success m-1"
         type="button"
         [routerLink]="['/pages', 'viewsalumnos']"
-        routerLinkActive="active"
-      >
-        Lista de Alumnos
+        routerLinkActive="active">
+      Mis Alumnos
       </button>
-      <button
+      
+      <button *ngIf="usuarioActual.rol=='estudiante'"
         class="btn btn-outline-success m-1"
         type="button"
         [routerLink]="['/pages', 'viewsprofesores']"
         routerLinkActive="active"
       >
-        Lista de Profesores
+        Mis Profesores
       </button>
     </div>
   </div>

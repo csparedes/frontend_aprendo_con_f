@@ -9,6 +9,7 @@ import { ProfessorProfileComponent } from './professor-profile/professor-profile
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 import { ProfesoresComponent } from './listas/profesores/profesores.component';
 import { AlumnosComponent } from './listas/alumnos/alumnos.component';
+import { loginGuard } from '../guards/login.guard';
 
 
 
@@ -17,11 +18,11 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
   { path: 'newuser', component: UserRegistrationFormComponent },
-  { path: 'professor/:id', component: ProfessorProfileComponent },
-  { path: 'student/:id', component: StudentProfileComponent },
-  { path: 'views', component: ViewsComponent },
-  { path: 'viewsalumnos', component: ProfesoresComponent },
-  { path: 'viewsprofesores', component: AlumnosComponent },
+  { path: 'professor/:id', component: ProfessorProfileComponent, canActivate: [loginGuard]},
+  { path: 'student/:id', component: StudentProfileComponent, canActivate: [loginGuard] },
+  { path: 'views', component: ViewsComponent, canActivate: [loginGuard] },
+  { path: 'viewsalumnos', component: ProfesoresComponent, canActivate: [loginGuard] },
+  { path: 'viewsprofesores', component: AlumnosComponent,canActivate: [loginGuard] },
   { path: '**', redirectTo: 'home' },
 ];
 
