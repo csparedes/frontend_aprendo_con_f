@@ -8,7 +8,7 @@ export interface User {
   postal_code: string;
   country: string;
   city: string;
-  areas?: any;
+  areas?: string[];
   experience?: any;
   imageUrl: string;
   description: string;
@@ -19,12 +19,10 @@ export interface User {
   fatal?: string;
   respuesta?: boolean;
   mensaje?: any;
+  latitude: number;
+  longitude: number;
 }
 
 export interface sendStatus {
-  status: string;
-}
-
-export interface sendCreddentials {
   status: string;
 }

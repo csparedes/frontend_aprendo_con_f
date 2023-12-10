@@ -13,6 +13,7 @@ import { ViewEncapsulation } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { DataService } from 'src/app/services/data.service';
 import Swal from 'sweetalert2';
+declare var bootstrap: any;
 
 export interface teacherElements {
   nombre: string;
@@ -23,17 +24,8 @@ export interface teacherElements {
   selected: boolean;
 }
 
-export interface studentsElement {
-  nombre: string;
-  city: string;
-  ubicacion: string;
-  correo: string;
-  estado: string;
-  selected: boolean;
-}
-
 let TEACHERS: teacherElements[] = [];
-let STUDENTS: studentsElement[] = [];
+let STUDENTS: teacherElements[] = [];
 
 @Component({
   selector: 'app-views',
@@ -49,8 +41,7 @@ export class ViewsComponent implements OnInit {
   //Arrays tables
   teachersData: any[] = [];
   students: any[] = [];
-  servicedataStudents: User[] = [];
-  servicedataTeachers: User[] = [];
+  servicedata: User[] = [];
   stateInterface: sendStatus = { status: '' };
 
   //Variables
@@ -66,14 +57,14 @@ export class ViewsComponent implements OnInit {
   ];
   displayedColumnsStudents: string[] = [
     'nombre',
-    'ciudad',
+    'rama',
     'ubicacion',
     'correo',
     'estado',
     'check',
   ];
   dataSourceTeacher = new MatTableDataSource<teacherElements>(TEACHERS);
-  dataSourceStudent = new MatTableDataSource<studentsElement>(STUDENTS);
+  dataSourceStudent = new MatTableDataSource<teacherElements>(STUDENTS);
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -84,7 +75,7 @@ export class ViewsComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    //this.servicedata = [];
+    this.servicedata = [];
     TEACHERS = [];
     STUDENTS = [];
     this.getAllUser();
@@ -144,6 +135,7 @@ export class ViewsComponent implements OnInit {
   }
 
   cargarTablas() {
+    console.log(this.servicedata);
     let teacher = {
       id: 0,
       nombre: '',
@@ -157,42 +149,50 @@ export class ViewsComponent implements OnInit {
     let student = {
       id: 0,
       nombre: '',
-      city: '',
+      rama: '',
       ubicacion: '',
       correo: '',
       estado: '',
       selected: true,
     };
+    this.servicedata.forEach((element) => {
+      if (element.role == 'profesor') {
+        teacher = {
+          id: element.id,
+          nombre: element.name,
+          rama: element.country,
+          ubicacion: element.country,
+          correo: element.email,
+          estado: element.status,
+          selected: element.status == 'activo' ? true : false,
+        };
+        TEACHERS.push(teacher);
+      } else if (element.role == 'estudiante') {
+        student = {
+          id: element.id,
+          nombre: element.name,
+          rama: element.country,
+          ubicacion: element.country,
+          correo: element.email,
+          estado: element.status,
+          selected: element.status == 'activo' ? true : false,
+        };
+        STUDENTS.push(student);
+      }
+      //this.teachersData = [...TEACHERS];
+    });
 
-    this.servicedataStudents.forEach((estudiante) => {
-      student = {
-        id: estudiante.id,
-        nombre: estudiante.name,
-        city: estudiante.city,
-        ubicacion: estudiante.country,
-        correo: estudiante.email,
-        estado: estudiante.status,
-        selected: estudiante.status == 'activo' ? true : false,
-      };
-      STUDENTS.push(student);
-    });
-    this.servicedataTeachers.forEach((profesor) => {
-      teacher = {
-        id: profesor.id,
-        nombre: profesor.name,
-        rama: profesor.areas,
-        ubicacion: profesor.country,
-        correo: profesor.email,
-        estado: profesor.status,
-        selected: profesor.status == 'activo' ? true : false,
-      };
-      TEACHERS.push(teacher);
-    });
+    console.log(STUDENTS);
+    console.log(TEACHERS);
 
     this.dataSourceTeacher = new MatTableDataSource<teacherElements>(TEACHERS);
-    this.dataSourceStudent = new MatTableDataSource<studentsElement>(STUDENTS);
+    this.dataSourceStudent = new MatTableDataSource<teacherElements>(STUDENTS);
     this.dataSourceTeacher.paginator = this.paginatorTeacher;
     this.dataSourceStudent.paginator = this.paginatorStudent;
+
+    console.log(this.dataSourceTeacher.paginator);
+    console.log(this.paginator);
+    console.log(this.paginatorStudent);
   }
 
   async getAllUser() {
@@ -200,19 +200,27 @@ export class ViewsComponent implements OnInit {
     //Llamada servicio AllUsers
     try {
       const response = await this.dataService.getAllUsers();
-      const responseStudents = await this.dataService.getAllStudents();
-      const responseProfesors = await this.dataService.getAllTeachers();
-      console.log(responseStudents);
-      console.log(responseProfesors);
-
-      this.servicedataStudents = [...responseStudents];
-      this.servicedataTeachers = [...responseProfesors];
-
+      this.servicedata = [...response];
       this.cargarTablas();
-      //console.log(this.servicedata);
+      console.log(this.servicedata);
       this.mensajeService.loading(false);
     } catch (error) {
       this.mensajeService.errorSerivicios();
     }
+  }
+
+  //Modal Register new Admins
+  registerAdminModal: any;
+  openRegisterAdminModal() {
+    if (!this.registerAdminModal) {
+      this.registerAdminModal = new bootstrap.Modal(
+        document.getElementById('registerAdminModal')!
+      );
+    }
+    this.registerAdminModal.show();
+  }
+
+  closeRegisterAdminModal() {
+    if(this.registerAdminModal) this.registerAdminModal.hide();
   }
 }
