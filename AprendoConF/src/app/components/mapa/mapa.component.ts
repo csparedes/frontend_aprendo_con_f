@@ -10,14 +10,6 @@ const image = 'https://img.icons8.com/bubbles/50/000000/teacher-phone-call.png';
 
 const imagen2 = 'https://img.icons8.com/bubbles/50/graduation-cap.png';
 
-var locations = [
-  ['Juan Hernandez', -33.4584, -70.61, 4],
-  ['Karina Guerra', -33.4685, -70.62, 5],
-  ['Maria Mare', -33.4786, -70.63, 3],
-  ['Manly Alisto', -33.4887, -70.64, 2],
-  ['Juan Figueroa', -33.4988, -70.65, 1],
-];
-
 var markerAlumno = new google.maps.Marker({
   position: { lat: 0, lng: 0 },
   icon: imagen2,
@@ -212,8 +204,6 @@ export class MapaComponent implements OnInit {
           })
         );
       }
-
-      for (i = 0; i < locations.length; i++) {}
 
       google.maps.event.addListener(autocomplete, 'place_changed', () => {
         markerAlumno.setMap(null);
