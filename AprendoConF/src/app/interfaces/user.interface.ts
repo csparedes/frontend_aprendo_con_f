@@ -10,6 +10,7 @@ export interface User {
   city: string;
   areas?: any;
   experience?: any;
+  //level?: any;
   imageUrl: string;
   description: string;
   hourly_rate: any;

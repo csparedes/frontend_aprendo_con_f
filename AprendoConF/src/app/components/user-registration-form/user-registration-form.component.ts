@@ -5,7 +5,6 @@ import Swal from 'sweetalert2';
 import { DataService } from '../../services/data.service';
 import { MessageService } from '../../services/message.service';
 import { User } from '../../interfaces/user.interface';
-import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-user-registration-form',
@@ -22,7 +21,6 @@ export class UserRegistrationFormComponent {
   activatedRoute = inject(ActivatedRoute);
   router = inject(Router);
   message = inject(MessageService);
-  authService = inject(AuthService);
 
   errorUserMessage(mensaje: string) {
     Swal.fire(mensaje);
@@ -117,9 +115,7 @@ export class UserRegistrationFormComponent {
       this.userRegistrationForm.value.country =
         this.userRegistrationForm.value.country.name;
       console.log(this.userRegistrationForm.value);
-      let response = await this.authService.registerUser(this.user);
-      console.log(response);
-
+      let response = await this.usersService.insertUser(this.user);
       this.message.loading(false);
       if (response.respuesta) {
         Swal.fire({
@@ -144,6 +140,7 @@ export class UserRegistrationFormComponent {
       this.message.errorSerivicios();
     }
   }
+  //Knowledge Area
 
   formValidator(
     formControlName: string,

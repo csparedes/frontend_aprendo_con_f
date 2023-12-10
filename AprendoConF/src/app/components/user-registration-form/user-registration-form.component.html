@@ -134,13 +134,13 @@
 
     <!--City -->
     <label class="label" for="city">Ciudad:</label>
-<input
+    <input
       type="text"
       class="form-control input is-link"
       formControlName="city"
       id="city"
       placeholder="Ingrese su Ciudad"
->
+    />
 
     <!--Areas de Conocimiento-->
     <div *ngIf="userRegistrationForm.get('role')?.value === 'profesor'">
@@ -178,7 +178,19 @@
       />
     </div>
 
-        <!--Phone-->
+    <!--Level-->
+    <div *ngIf="userRegistrationForm.get('role')?.value === 'profesor'">
+      <label class="label" for="level">Level:</label>
+      <input
+        type="text"
+        class="form-control input is-link"
+        formControlName="level"
+        id="level"
+        placeholder="Ingrese su nivel de experiencia"
+      />
+    </div>
+
+    <!--Phone-->
     <div *ngIf="userRegistrationForm.get('role')?.value === 'profesor'">
       <label class="label" for="phone">Teléfono</label>
       <input
@@ -202,7 +214,7 @@
       />
     </div>
 
-      <!--Description -->
+    <!--Description -->
     <div *ngIf="userRegistrationForm.get('role')?.value === 'profesor'">
       <label class="label" for="description">Descripción:</label>
       <textarea
@@ -225,7 +237,10 @@
       >
         Enviar
       </button>
-      <button class="btn btn-danger m-3 btn-size" [routerLink]="['/pages','home']">
+      <button
+        class="btn btn-danger m-3 btn-size"
+        [routerLink]="['/pages', 'home']"
+      >
         Cancelar
       </button>
     </div>
