@@ -13,7 +13,6 @@ import { ViewEncapsulation } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { DataService } from 'src/app/services/data.service';
 import Swal from 'sweetalert2';
-import { Router } from '@angular/router';
 
 export interface teacherElements {
   nombre: string;
@@ -46,13 +45,12 @@ export class ViewsComponent implements OnInit {
   //Servicios
   mensajeService = inject(MessageService);
   dataService = inject(DataService);
-  router = inject(Router);
 
   //Arrays tables
   teachersData: any[] = [];
   students: any[] = [];
-  servicedataStudents: any = [];
-  servicedataTeachers: any = [];
+  servicedataStudents: User[] = [];
+  servicedataTeachers: User[] = [];
   stateInterface: sendStatus = { status: '' };
 
   //Variables
@@ -86,9 +84,6 @@ export class ViewsComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    if (!localStorage.getItem('miToken')) {
-      this.router.navigate(['/pages']);
-    }
     //this.servicedata = [];
     TEACHERS = [];
     STUDENTS = [];
@@ -169,7 +164,7 @@ export class ViewsComponent implements OnInit {
       selected: true,
     };
 
-    this.servicedataStudents.forEach((estudiante: any) => {
+    this.servicedataStudents.forEach((estudiante) => {
       student = {
         id: estudiante.id,
         nombre: estudiante.name,
@@ -181,7 +176,7 @@ export class ViewsComponent implements OnInit {
       };
       STUDENTS.push(student);
     });
-    this.servicedataTeachers.forEach((profesor: any) => {
+    this.servicedataTeachers.forEach((profesor) => {
       teacher = {
         id: profesor.id,
         nombre: profesor.name,
@@ -210,12 +205,8 @@ export class ViewsComponent implements OnInit {
       console.log(responseStudents);
       console.log(responseProfesors);
 
-      if (responseStudents.respuesta) {
-        this.servicedataStudents = [...responseStudents.resultado.estudiantes];
-      }
-      if (responseStudents.respuesta) {
-        this.servicedataTeachers = [...responseProfesors.resultado.profesores];
-      }
+      this.servicedataStudents = [...responseStudents];
+      this.servicedataTeachers = [...responseProfesors];
 
       this.cargarTablas();
       //console.log(this.servicedata);

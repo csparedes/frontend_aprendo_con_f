@@ -21,7 +21,6 @@
         class="btn btn-outline-success m-1"
         type="button"
         (click)="openLoginModal()"
-        *ngIf="!dataService.isLogged()"
       >
         Login
       </button>
@@ -30,7 +29,6 @@
         type="button"
         [routerLink]="['/pages', 'newuser']"
         routerLinkActive="active"
-        *ngIf="!dataService.isLogged()"
       >
         Register
       </button>
@@ -39,34 +37,8 @@
         type="button"
         [routerLink]="['/pages', 'views']"
         routerLinkActive="active"
-        *ngIf="dataService.isLogged()"
       >
         Administración Users
-      </button>
-      <button
-        class="btn btn-outline-success m-1"
-        type="button"
-        (click)="cerrrarSesion()"
-        *ngIf="dataService.isLogged()"
-      >
-        Cerrar Sesión
-      </button>
-
-      <button
-        class="btn btn-outline-success m-1"
-        type="button"
-        [routerLink]="['/pages', 'viewsalumnos']"
-        routerLinkActive="active"
-      >
-        Lista de Alumnos
-      </button>
-      <button
-        class="btn btn-outline-success m-1"
-        type="button"
-        [routerLink]="['/pages', 'viewsprofesores']"
-        routerLinkActive="active"
-      >
-        Lista de Profesores
       </button>
     </div>
   </div>

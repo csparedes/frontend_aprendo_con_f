@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
@@ -14,6 +14,9 @@ export class DataService {
     'http://localhost:3001/api/users/profesores/activo';
   private baseUrlstudent: string =
     'http://localhost:3001/api/users/estudiante/activo';
+
+  private baseUrlenrollment : string = 'http://localhost:3001/api/enrollments';
+
 
   private httpClient = inject(HttpClient);
 
@@ -34,13 +37,13 @@ export class DataService {
 
   getAllTeachers() {
     return firstValueFrom(
-      this.httpClient.get<any>(`${this.baseUrl}prof/allProfesor`)
+      this.httpClient.get<User[]>(`${this.baseUrl}prof/allProfesor`)
     );
   }
 
   getAllStudents() {
     return firstValueFrom(
-      this.httpClient.get<any>(`${this.baseUrl}est/allEstudiante`)
+      this.httpClient.get<User[]>(`${this.baseUrl}est/allEstudiante`)
     );
   }
 
@@ -69,23 +72,7 @@ export class DataService {
     );
   }
 
-  isLogged(): boolean {
-    if (localStorage.getItem('miToken')) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
-  getStudentsByProfessorId(id: number) {
-    return firstValueFrom(
-      this.httpClient.get<User[]>(`${this.baseUrl}/profesor/estudiantes/${id}`)
-    );
-  }
-
-  getProfesoresByStudentId(id: number) {
-    return firstValueFrom(
-      this.httpClient.get<User[]>(`${this.baseUrl}/student/profesores/${id}`)
-    );
-  }
+  createNewEnrollment(data: { student_id: number, teacher_id: number }) {
+    return this.httpClient.post(`${this.baseUrlenrollment}`, data);
+   }
 }
