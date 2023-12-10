@@ -42,5 +42,6 @@ ngOnInit(): void {
       localStorage.removeItem('miToken');
       this.router.navigate(['/pages']);
     }
+    window.location.reload();
   }
 }
