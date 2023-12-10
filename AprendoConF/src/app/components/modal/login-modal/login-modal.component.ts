@@ -57,6 +57,7 @@ export class LoginModalComponent {
           this.cerrarModal();
           loginForm.reset();
           this.router.navigate(['pages', 'home']);
+          window.location.reload();
         } else {
           this.errorView = !respuesta;
           this.mensajeError = mensaje;
