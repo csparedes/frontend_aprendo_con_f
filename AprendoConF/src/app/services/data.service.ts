@@ -15,6 +15,11 @@ export class DataService {
   private baseUrlstudent: string =
     'http://localhost:3001/api/users/estudiante/activo';
 
+   private baseUrlenrollment: string = 'http://localhost:3001/api/enrollments';
+
+  private baseUrlKnowledgeAreas: string = 'http://localhost:3001/api/knowledge';
+
+
   private httpClient = inject(HttpClient);
 
   async insertUser(formValue: any): Promise<User> {
@@ -88,4 +93,22 @@ export class DataService {
       this.httpClient.get<User[]>(`${this.baseUrl}/student/profesores/${id}`)
     );
   }
+
+  updateReviewRating(
+    enrollmentId: number,
+    data: { rating: number; review: string }
+  ) {
+    return this.httpClient.put(
+      `${this.baseUrlenrollment}/${enrollmentId}`,
+      data
+    );
+  }
+
+  insertKnowledgeArea(area: any) {
+    console.log('LLamo insertKnowledgeArea');
+    console.log('this.baseUrlKnowledgeAreas', this.baseUrlKnowledgeAreas);
+    return this.httpClient.post(this.baseUrlKnowledgeAreas, area);
+  }
+
+
 }

@@ -122,6 +122,30 @@ export class UserRegistrationFormComponent {
 
       this.message.loading(false);
       if (response.respuesta) {
+        //Knowledge Area
+        console.log('respuesta ok');
+        if (this.user.role === 'profesor') {
+          console.log('profesor ok');
+          // @ts-ignore
+          const teacher_id = response.resultado[0].id;
+          console.log('teacher_id', teacher_id);
+          // Iterar sobre las áreas nuevas y crear una promesa para cada inserción
+          this.user.areas.split(', ').forEach((area: string) => {
+            console.log('Agregando area', area);
+            try{
+              this.message.loading(true);
+              const response = this.usersService.insertKnowledgeArea({
+              teacher_id,
+              area,
+            });
+              this.message.loading(false);
+              console.log(response);
+            }catch(error){
+              console.log(error);
+            }
+          });
+        }
+        //Termina Knowledge Area
         Swal.fire({
           title: 'Creación Exitosa.',
           text: `El usuario ${this.user.username} ahora se encuentra registrado`,

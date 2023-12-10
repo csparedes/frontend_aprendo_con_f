@@ -11,14 +11,7 @@
     </div>
     <div class="d-flex">
       <button
-        class="btn btn-outline-success m-1"
-        type="button"
-        [routerLink]="['mapa']"
-      >
-        Búsqueda
-      </button>
-      <button
-        class="btn btn-outline-success m-1"
+        class="btn btn-color m-1"
         type="button"
         (click)="openLoginModal()"
         *ngIf="!dataService.isLogged()"
@@ -26,7 +19,7 @@
         Login
       </button>
       <button
-        class="btn btn-outline-success m-1"
+        class="btn btn-color m-1"
         type="button"
         [routerLink]="['/pages', 'newuser']"
         routerLinkActive="active"
@@ -35,7 +28,15 @@
         Register
       </button>
       <button
-        class="btn btn-outline-success m-1"
+        class="btn m-1 btn-color"
+        type="button"
+        [routerLink]="['mapa']"
+      >
+        Búsqueda
+      </button>
+
+      <button
+        class="btn btn-color m-1"
         type="button"
         [routerLink]="['/pages', 'views']"
         routerLinkActive="active"
@@ -44,7 +45,7 @@
         Administración Users
       </button>
       <button
-        class="btn btn-outline-success m-1"
+        class="btn btn-color m-1"
         type="button"
         (click)="cerrrarSesion()"
         *ngIf="dataService.isLogged()"
@@ -53,22 +54,23 @@
       </button>
 
       <button
-        class="btn btn-outline-success m-1"
+        class="btn btn-color m-1"
         type="button"
         [routerLink]="['/pages', 'viewsalumnos']"
         routerLinkActive="active"
       >
-        Lista de Alumnos
+        Mis Alumnos
       </button>
       <button
-        class="btn btn-outline-success m-1"
+        class="btn btn-color m-1"
         type="button"
         [routerLink]="['/pages', 'viewsprofesores']"
         routerLinkActive="active"
       >
-        Lista de Profesores
+        Mis Profesores
       </button>
     </div>
   </div>
 </nav>
 <app-login-modal></app-login-modal>
+

@@ -13,7 +13,14 @@ import { MessageService } from 'src/app/services/message.service';
 export class ProfessorProfileComponent implements OnInit {
   oneProfessorId!: string;
   oneProfessor: User | any;
+  userId: any;
+  infoUser: any;
+  roleUser !: string;
+
+
   showOpinionModal: boolean = false;
+  token = localStorage.getItem('miToken'); //agregado
+  show = false
 
   userService: DataService = inject(DataService);
   messageService = inject(MessageService);
@@ -21,7 +28,39 @@ export class ProfessorProfileComponent implements OnInit {
 
   router = inject(Router);
   async ngOnInit() {
+    if (this.userService.isLogged()) {
+      console.log(localStorage.getItem('miToken'));
+      let token = localStorage.getItem('miToken');
+      function decodeJWT(token: any) {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(
+          window
+            .atob(base64)
+            .split('')
+            .map(function (c) {
+              return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            })
+            .join('')
+        );
+        return JSON.parse(jsonPayload);
+      }
+
+      this.infoUser = decodeJWT(token);
+      console.log(this.infoUser);
+      this.userId = this.infoUser.id;
+      this.roleUser = this.infoUser.role;
+    }
     this.getTeachersById();
+
+
+
+     this.mostrar();
+  }
+
+  mostrar() {
+    console.log(this.token)
+    this.token? this.show=true: this.show=false;
   }
 
   getTeachersById() {
@@ -31,6 +70,7 @@ export class ProfessorProfileComponent implements OnInit {
       this.oneProfessor = await this.userService.getProfessorById(
         Number(this.oneProfessorId)
       );
+      console.log(this.oneProfessor);
       this.oneProfessor = this.oneProfessor[0];
       this.oneProfessor.areas = this.oneProfessor.areas.split(',');
       this.messageService.loading(false);

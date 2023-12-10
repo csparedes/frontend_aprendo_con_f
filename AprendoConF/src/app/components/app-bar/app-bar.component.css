@@ -7,3 +7,15 @@
     margin-left: 3px;
     margin-right: 10px;
 }
+
+.btn-color{
+  background-color: #27A4A4;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+btn-color:hover {
+  background-color: #069393; /* Color de fondo al pasar el mouse sobre el botón */
+}
+
+
