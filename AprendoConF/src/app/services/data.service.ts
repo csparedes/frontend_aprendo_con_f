@@ -17,6 +17,8 @@ export class DataService {
   private baseUbicaciones: string = 
   'http://localhost:3001/api/users/datos/profesor';
 
+  private baseUrlenrollment : string = 'http://localhost:3001/api/enrollments';
+
   private httpClient = inject(HttpClient);
 
   async insertUser(formValue: any): Promise<User> {
@@ -60,4 +62,8 @@ export class DataService {
       this.httpClient.get<User>(`${this.baseUrlstudent}/${id}`)
     );
   }
+
+  createNewEnrollment(data: { student_id: number, teacher_id: number }) {
+    return this.httpClient.post(`${this.baseUrlenrollment}`, data);
+   }
 }
