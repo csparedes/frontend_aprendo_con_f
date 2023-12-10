@@ -9,11 +9,13 @@ import { User, sendStatus } from '../interfaces/user.interface';
 })
 export class DataService {
   private baseUrl = 'http://localhost:3001/api/users/';
-
+  private baseUrlenrollment: string = 'http://localhost:3001/api/enrollments';
   private baseUrlprofessor: string =
     'http://localhost:3001/api/users/profesores/activo';
   private baseUrlstudent: string =
     'http://localhost:3001/api/users/estudiante/activo';
+  private baseUbicaciones: string =
+    'http://localhost:3001/api/users/datos/profesor';
 
   private httpClient = inject(HttpClient);
 
@@ -87,5 +89,13 @@ export class DataService {
     return firstValueFrom(
       this.httpClient.get<User[]>(`${this.baseUrl}/student/profesores/${id}`)
     );
+  }
+
+  createNewEnrollment(data: { student_id: number; teacher_id: number }) {
+    return this.httpClient.post(`${this.baseUrlenrollment}`, data);
+  }
+
+  getLocations() {
+    return firstValueFrom(this.httpClient.get<User[]>(this.baseUbicaciones));
   }
 }

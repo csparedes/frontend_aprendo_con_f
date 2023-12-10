@@ -1,11 +1,10 @@
-///<reference path="../../../../node_modules/@types/googlemaps/index.d.ts"/>
-
-import { Component, OnInit, Input, Directive } from '@angular/core';
+import { Component, OnInit, Input, Directive, inject } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { User } from '../../interfaces/user.interface';
 //import {USERS} from "../../database/user.db";
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { DataService } from '../../services/data.service';
 
 const image = 'https://img.icons8.com/bubbles/50/000000/teacher-phone-call.png';
 
@@ -32,6 +31,11 @@ var markerAlumno = new google.maps.Marker({
 export class MapaComponent implements OnInit {
   @ViewChild('divMap') divMap!: ElementRef;
   @ViewChild('inputPlaces') inputPlaces!: ElementRef;
+  oneProfessorId!: string;
+  oneProfessor: User | any;
+  userService: DataService = inject(DataService);
+  activatedRoute = inject(ActivatedRoute);
+  //router = inject(Router);
 
   mapa!: google.maps.Map;
   markers: google.maps.Marker[];
@@ -51,7 +55,12 @@ export class MapaComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  async ngOnInit() {
+    this.activatedRoute.params.subscribe(async (params: any) => {
+      this.oneProfessorId = params.id;
+      this.oneProfessor = await this.userService.getLocations();
+    });
+  }
 
   ngAfterViewInit(): void {
     const opciones = {
@@ -90,6 +99,21 @@ export class MapaComponent implements OnInit {
     //Inicio autocomplete, cambio de lugar
     google.maps.event.addListener(autocomplete, 'place_changed', () => {
       const place: any = autocomplete.getPlace();
+      console.log(place.geometry.location.lat());
+      console.log(place.geometry.location.lng());
+
+      var locacionBuscada = [
+        place.geometry.location.lat(),
+        place.geometry.location.lng(),
+      ];
+      var locacionRadio = [
+        place.geometry.location.lat() + 0.3,
+        place.geometry.location.lng() + 0.3,
+      ];
+
+      var j;
+
+      console.log(locacionBuscada, locacionRadio);
 
       this.mapa.setCenter(place.geometry.location);
 
@@ -126,25 +150,35 @@ export class MapaComponent implements OnInit {
       let i;
       var almacenMarkerP: { setMap: (arg0: null) => void }[] = [];
 
-      for (i = 0; i < locations.length; i++) {
+      for (j = 0; j < this.oneProfessor.length; j++) {
+        if (
+          this.oneProfessor[j].latitude < locacionRadio[0] &&
+          this.oneProfessor[j].longitude < locacionRadio[1]
+        )
+          console.log(
+            this.oneProfessor[j].id,
+            this.oneProfessor[j].latitude,
+            this.oneProfessor[j].longitude
+          );
         const markerProfesor = new google.maps.Marker({
           position: new google.maps.LatLng(
-            Number(locations[i][1]),
-            Number(locations[i][2])
+            Number(this.oneProfessor[j].latitude),
+            Number(this.oneProfessor[j].longitude)
           ),
           icon: image,
           animation: google.maps.Animation.BOUNCE,
         });
 
-        const paginas = '/pages/teacher/4';
-
-        //'+',''+ profe+ ',4]"> Pérfil </button>';
-
-        //console.log(profesorString)
-
         markerProfesor.setMap(this.mapa);
 
         almacenMarkerP.push(markerProfesor);
+
+        const paginas = '/pages/professor/' + this.oneProfessor[j].id;
+        const nombre = this.oneProfessor[j].name;
+        const valor = this.oneProfessor[j].hourly_rate;
+        const descripcion = this.oneProfessor[j].description;
+        const imagen =
+          'https://img.icons8.com/bubbles/50/000000/teacher-phone-call.png';
 
         //Mensaje marker profesores cuando clic
         google.maps.event.addListener(
@@ -152,19 +186,34 @@ export class MapaComponent implements OnInit {
           'click',
           (mensaje = () => {
             infowindow.open(this.mapa, markerProfesor);
-
-            const paginas = '/pages/teacher/4';
-
             const boton = document.createElement('button');
             boton.innerHTML = 'Pérfil';
             boton.addEventListener('click', () => {
               this.router.navigate([paginas]);
             });
 
-            infowindow.setContent(boton);
+            const contentString =
+              "<img src='" +
+              imagen +
+              "'><p>" +
+              nombre +
+              '</p>' +
+              '<p>' +
+              valor +
+              '</p>' +
+              '<p>' +
+              descripcion +
+              '</p>' +
+              "<a href='http://localhost:4200" +
+              paginas +
+              "'>Ver perfil</a>"; //boton.innerHTML;
+
+            infowindow.setContent(contentString);
           })
         );
       }
+
+      for (i = 0; i < locations.length; i++) {}
 
       google.maps.event.addListener(autocomplete, 'place_changed', () => {
         markerAlumno.setMap(null);
@@ -230,8 +279,3 @@ export class MapaComponent implements OnInit {
     );
   }
 }
-
-// @Directive()
-// export class ProfessorCardComponent {
-//   @Input() professorCard: User[] = USERS;
-// }

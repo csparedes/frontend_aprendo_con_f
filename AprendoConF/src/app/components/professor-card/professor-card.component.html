@@ -18,16 +18,13 @@
             <img
               class="user-image img-fluid mt-3"
               [src]="professor.imageUrl"
-              [ngClass]="{'imagen-redimensionada': true}"
+              [ngClass]="{ 'imagen-redimensionada': true }"
               alt=""
             />
           </div>
           <div class="knowledge-areas text-center mt-3">
             <ul class="list-inline">
-              <li
-                class="list-inline-item"
-                *ngFor="let area of professor.areas"
-              >
+              <li class="list-inline-item" *ngFor="let area of professor.areas">
                 {{ area }}
               </li>
             </ul>
@@ -54,7 +51,7 @@
                 src="./assets/images/Dollar_Bill.JPG"
                 alt=""
               />
-              <p class="mb-0">{{ professor.hourly_rate | currency: 'GBP' }}</p>
+              <p class="mb-0">{{ professor.hourly_rate | currency : "GBP" }}</p>
             </div>
           </div>
           <div class="text-center mt-auto">
@@ -67,7 +64,12 @@
               >
                 Pérfil
               </button>
-              <button class="btn btn-primary" type="button" name="button">
+              <button
+                (click)="suscribete(professor.id)"
+                class="btn btn-primary"
+                type="button"
+                name="professor.id"
+              >
                 Subscribete
               </button>
             </div>
