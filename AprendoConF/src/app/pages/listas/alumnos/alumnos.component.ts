@@ -7,7 +7,7 @@ import { DataService } from 'src/app/services/data.service';
 export interface profesorelementos {
   name: string;
   email: string;
-  area_de_conocimiento: string;
+  areas_de_conocimiento: string;
   city: string; 
   country: string;
 }
@@ -26,7 +26,7 @@ export class AlumnosComponent implements AfterViewInit {
   servicedata: User[] = [];
 
   //Columnas
-  displayedColumns: string[] = ['index', 'name', 'email', 'country', 'city', 'area_de_conocimiento'];
+  displayedColumns: string[] = ['index', 'name', 'email', 'country', 'city', 'areas_de_conocimiento'];
 
   dataSource = new MatTableDataSource<profesorelementos>(profesores);
 
