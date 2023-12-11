@@ -16,6 +16,9 @@ export class UserRegistrationFormComponent {
   userRegistrationForm: FormGroup;
   showPassword: boolean = false;
   user!: User;
+  userknoweldge!: any;
+  teacher_id: any;
+  arrAreas: any[] = [];
 
   usersService = inject(DataService);
 
@@ -69,8 +72,6 @@ export class UserRegistrationFormComponent {
   }
 
   async getDataForm(): Promise<void> {
-    console.log(this.userRegistrationForm.get('country')?.value.name);
-
     if (this.userRegistrationForm.get('role')?.value == 'profesor') {
       this.user = {
         role: this.userRegistrationForm.get('role')?.value,
@@ -107,43 +108,27 @@ export class UserRegistrationFormComponent {
         hourly_rate: this.userRegistrationForm.get('hourly_rate')?.setValue(0),
         rating: this.userRegistrationForm.get('rating')?.setValue(0),
         phone: this.userRegistrationForm.get('phone')?.value,
-        status: 'registrado',
+        status: 'activo',
       };
     }
 
     try {
       this.message.loading(true);
-      console.log(this.userRegistrationForm.value);
       this.userRegistrationForm.value.country =
         this.userRegistrationForm.value.country.name;
-      console.log(this.userRegistrationForm.value);
       let response = await this.authService.registerUser(this.user);
-      console.log(response);
 
       this.message.loading(false);
       if (response.respuesta) {
         //Knowledge Area
-        console.log('respuesta ok');
         if (this.user.role === 'profesor') {
-          console.log('profesor ok');
           // @ts-ignore
-          const teacher_id = response.resultado[0].id;
-          console.log('teacher_id', teacher_id);
+          this.teacher_id = response.resultado[0].id;
           // Iterar sobre las áreas nuevas y crear una promesa para cada inserción
-          this.user.areas.split(', ').forEach((area: string) => {
-            console.log('Agregando area', area);
-            try{
-              this.message.loading(true);
-              const response = this.usersService.insertKnowledgeArea({
-              teacher_id,
-              area,
-            });
-              this.message.loading(false);
-              console.log(response);
-            }catch(error){
-              console.log(error);
-            }
-          });
+          this.arrAreas = this.user.areas.split(', ');
+          for (const el of this.arrAreas) {
+            this.insertKnoweldge(el);
+          }
         }
         //Termina Knowledge Area
         Swal.fire({
@@ -181,5 +166,25 @@ export class UserRegistrationFormComponent {
 
   togglePasswordVisibility() {
     this.showPassword = !this.showPassword;
+  }
+
+  async insertKnoweldge(area: any) {
+    this.message.loading(true);
+    try {
+      if (this.userRegistrationForm.get('role')?.value == 'profesor') {
+        this.userknoweldge = {
+          teacher_id: this.teacher_id,
+          category: 'stop',
+          description: 'stop',
+          level: 'stop',
+          area: area,
+          active: true,
+        };
+        const data = await this.usersService.insertKnowledgeArea(
+          this.userknoweldge
+        );
+        this.message.loading(false);
+      }
+    } catch (error) {}
   }
 }

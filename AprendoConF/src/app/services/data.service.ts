@@ -15,10 +15,10 @@ export class DataService {
   private baseUrlstudent: string =
     'http://localhost:3001/api/users/estudiante/activo';
 
-   private baseUrlenrollment: string = 'http://localhost:3001/api/enrollments';
+  private baseUrlenrollment: string = 'http://localhost:3001/api/enrollments';
 
-  private baseUrlKnowledgeAreas: string = 'http://localhost:3001/api/knowledge';
-
+  private baseUrlKnowledgeAreas: string =
+    'http://localhost:3001/api/knowledge/area/';
 
   private httpClient = inject(HttpClient);
 
@@ -105,10 +105,8 @@ export class DataService {
   }
 
   insertKnowledgeArea(area: any) {
-    console.log('LLamo insertKnowledgeArea');
-    console.log('this.baseUrlKnowledgeAreas', this.baseUrlKnowledgeAreas);
-    return this.httpClient.post(this.baseUrlKnowledgeAreas, area);
+    return firstValueFrom(
+      this.httpClient.post(this.baseUrlKnowledgeAreas, area)
+    );
   }
-
-
 }
