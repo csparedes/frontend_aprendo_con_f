@@ -15,7 +15,7 @@ export class AppBarComponent {
   usuarioActual: { rol: string; id: number; } = { rol: 'Invitado', id: 0 };
   router = inject(Router);
   public dataService = inject(DataService);
-  private autorizacionService = inject(AutorizacionService);
+  private autorizacionServices = inject(AutorizacionService);
 
   constructor(private autorizacion: AutorizacionService, private cdr: ChangeDetectorRef) {
   }
@@ -23,14 +23,12 @@ export class AppBarComponent {
 ngOnInit(): void {
   this.autorizacion.usuarioActual.subscribe(usuario => {
     if (usuario == null) {
-      this.usuarioActual={rol:'Invitado', id:0};
+      this.usuarioActual = { rol: 'Invitado', id: 0 };
     } else {
       this.usuarioActual = usuario;
     }
-    console.log('hola',this.usuarioActual);
     this.cdr.detectChanges();
   });
-
 }
 
   openLoginModal() {

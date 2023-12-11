@@ -10,12 +10,9 @@ export class AutorizacionService {
   private usuarioactual = new BehaviorSubject<any>(null);
    usuarioActual = this.usuarioactual.asObservable();
    infoUser: any;
-  constructor() { }
 
-
-  get currentUserValue() {
+   get currentUserValue() {
     return this.usuarioactual.value;
-    
   }
   login(datos:any) {
     localStorage.setItem('miToken', datos);
@@ -45,4 +42,11 @@ export class AutorizacionService {
     this.usuarioactual.next(null);
   }
 
+  constructor() {
+    const token = localStorage.getItem('miToken');
+    if (token) {
+      this.login(token); 
+    }
+  } 
+   
 }

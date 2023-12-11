@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MessageService } from 'src/app/services/message.service';
 import { AuthService } from 'src/app/services/auth.service';
 import Swal from 'sweetalert2';
+import { AutorizacionService } from 'src/app/services/autorizacion.service';
 
 @Component({
   selector: 'app-professor-card',
@@ -23,6 +24,8 @@ export class ProfessorCardComponent {
 
   public userService = inject(DataService);
   private authService = inject(AuthService);
+  private autorizacionServices  = inject(AutorizacionService)   
+
 
   async ngOnInit() {
     if (this.userService.isLogged()) {
@@ -51,6 +54,7 @@ export class ProfessorCardComponent {
     this.teacherByStudent();
     this.getUsers();
     this.oneStudent = await this.userService.getAllUsers();
+ 
   }
 
   suscribete(proffesor_id: any) {
