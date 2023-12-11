@@ -24,7 +24,8 @@ export class ProfessorCardComponent {
 
   public userService = inject(DataService);
   private authService = inject(AuthService);
-  private autorizacionServices  = inject(AutorizacionService)   
+  private autorizacionServices  = inject(AutorizacionService)  
+  Idrol: string = 'Invitado';   
 
 
   async ngOnInit() {
@@ -54,7 +55,8 @@ export class ProfessorCardComponent {
     this.teacherByStudent();
     this.getUsers();
     this.oneStudent = await this.userService.getAllUsers();
- 
+    this.Idrol = this.autorizacionServices.getRolUsuario()!;
+    console.log('holaaa', this.Idrol);
   }
 
   suscribete(proffesor_id: any) {
@@ -127,4 +129,6 @@ export class ProfessorCardComponent {
       console.log(this.arrTeachers);
     } catch (error) {}
   }
+
+
 }
