@@ -1,6 +1,6 @@
 <nav class="navbar bg-body-tertiary">
   <div class="container-fluid">
-    <div [routerLink]="['/pages', 'home']" routerLinkActive="active">
+    <div [routerLink]="['/pages', 'home']">
       <img
         class="img-isotipo"
         src="./assets/images/AprendoConF.jpg"
@@ -11,14 +11,7 @@
     </div>
     <div class="d-flex">
       <button
-        class="btn btn-outline-success m-1"
-        type="button"
-        [routerLink]="['mapa']"
-      >
-        Búsqueda
-      </button>
-      <button
-        class="btn btn-outline-success m-1"
+        class="btn btn-color m-1"
         type="button"
         (click)="openLoginModal()"
         *ngIf="!dataService.isLogged()"
@@ -26,7 +19,7 @@
         Login
       </button>
       <button
-        class="btn btn-outline-success m-1"
+        class="btn btn-color m-1"
         type="button"
         [routerLink]="['/pages', 'newuser']"
         routerLinkActive="active"
@@ -34,17 +27,21 @@
       >
         Register
       </button>
+      <button class="btn m-1 btn-color" type="button" [routerLink]="['mapa']">
+        Búsqueda
+      </button>
+
       <button
-        class="btn btn-outline-success m-1"
+        class="btn btn-color m-1"
         type="button"
         [routerLink]="['/pages', 'views']"
         routerLinkActive="active"
-        *ngIf="usuarioActual.rol=='administrador'"
+        *ngIf="usuarioActual.rol == 'administrador'"
       >
         Administración Users
       </button>
       <button
-        class="btn btn-outline-success m-1"
+        class="btn btn-color m-1"
         type="button"
         (click)="cerrrarSesion()"
         *ngIf="dataService.isLogged()"
@@ -52,15 +49,18 @@
         Cerrar Sesión
       </button>
 
-       <button *ngIf="usuarioActual.rol=='profesor'"
+      <button
+        *ngIf="usuarioActual.rol == 'profesor'"
         class="btn btn-outline-success m-1"
         type="button"
         [routerLink]="['/pages', 'viewsalumnos']"
-        routerLinkActive="active">
-      Mis Alumnos
+        routerLinkActive="active"
+      >
+        Mis Alumnos
       </button>
-      
-      <button *ngIf="usuarioActual.rol=='estudiante'"
+
+      <button
+        *ngIf="usuarioActual.rol == 'estudiante'"
         class="btn btn-outline-success m-1"
         type="button"
         [routerLink]="['/pages', 'viewsprofesores']"

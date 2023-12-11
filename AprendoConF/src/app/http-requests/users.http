@@ -32,3 +32,16 @@ Content-Type: application/json
   "hourly_rate": 40,
   "phone": "1+890-7890"
 }
+
+###
+POST http://localhost:3001/api/knowledge
+Content-Type: application/json
+
+{
+  "teacher_id": 8,
+  "category": "Oficios 2",
+  "description": "Alnbañileria",
+  "level": "Intermedio",
+  "area": "Albañileria",
+  "active": true
+}

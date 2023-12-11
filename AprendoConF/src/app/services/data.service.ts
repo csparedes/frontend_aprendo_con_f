@@ -19,6 +19,9 @@ export class DataService {
   private baseUrProfesByStudents: string =
     'http://localhost:3001/api/users/student/profesores/';
 
+  private baseUrlKnowledgeAreas: string =
+    'http://localhost:3001/api/knowledge/area/';
+
   private httpClient = inject(HttpClient);
 
   async insertUser(formValue: any): Promise<User> {
@@ -104,6 +107,21 @@ export class DataService {
   getprofesoresDeEstudiante(id: number) {
     return firstValueFrom(
       this.httpClient.get<any>(`${this.baseUrProfesByStudents}${id}`)
+    );
+  }
+  updateReviewRating(
+    enrollmentId: number,
+    data: { rating: number; review: string }
+  ) {
+    return this.httpClient.put(
+      `${this.baseUrlenrollment}/${enrollmentId}`,
+      data
+    );
+  }
+
+  insertKnowledgeArea(area: any) {
+    return firstValueFrom(
+      this.httpClient.post(this.baseUrlKnowledgeAreas, area)
     );
   }
 }
