@@ -70,7 +70,7 @@
                 "
               >
                 <button
-                *ngIf="Idrol !== 'profesor'"
+                  *ngIf="Idrol !== 'profesor' && Idrol !== 'administrador'"
                   (click)="suscribete(professor.id)"
                   class="btn btn-primary"
                   type="button"
@@ -85,7 +85,7 @@
                 "
               >
                 <button
-                *ngIf="Idrol !== 'profesor'"
+                  *ngIf="Idrol !== 'profesor' && Idrol !== 'administrador'"
                   (click)="suscribete(professor.id)"
                   class="btn btn-primary"
                   type="button"

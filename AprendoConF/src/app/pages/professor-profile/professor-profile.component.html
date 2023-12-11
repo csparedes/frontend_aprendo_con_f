@@ -15,22 +15,13 @@
             {{ oneProfessor.country }}
           </p>
         </div>
-        <p
-          class="phone label"
-          *ngIf="
-            roleUser === 'estudiante' &&
-            show
-          "
-        >
-
+        <p class="phone label" *ngIf="roleUser === 'estudiante' && show">
           <span>Phone:</span> {{ oneProfessor.phone }}
         </p>
         <button
           class="btn btn-primary m-1"
           [routerLink]="['/pages', 'newuser']"
-          *ngIf="
-            !show
-          "
+          *ngIf="!show"
         >
           Registrate
         </button>
@@ -52,10 +43,9 @@
             class="profile-details-img"
             src="./assets/images/Profile_Details.JPG"
             alt="Profile Details"
-            *ngIf="
-              show
-            "
+            *ngIf="show"
             (click)="openTestimonials()"
+            style="cursor: pointer"
           />
           <app-testimonials
             *ngIf="showOpinionModal"

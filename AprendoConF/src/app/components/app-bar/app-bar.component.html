@@ -27,7 +27,12 @@
       >
         Register
       </button>
-      <button class="btn m-1 btn-color" type="button" [routerLink]="['mapa']">
+      <button
+        class="btn m-1 btn-color"
+        type="button"
+        [routerLink]="['mapa']"
+        routerLinkActive="active"
+      >
         Búsqueda
       </button>
 
@@ -51,7 +56,7 @@
 
       <button
         *ngIf="usuarioActual.rol == 'profesor'"
-        class="btn btn-outline-success m-1"
+        class="btn btn-color m-1"
         type="button"
         [routerLink]="['/pages', 'viewsalumnos']"
         routerLinkActive="active"
@@ -61,7 +66,7 @@
 
       <button
         *ngIf="usuarioActual.rol == 'estudiante'"
-        class="btn btn-outline-success m-1"
+        class="btn btn-color m-1"
         type="button"
         [routerLink]="['/pages', 'viewsprofesores']"
         routerLinkActive="active"

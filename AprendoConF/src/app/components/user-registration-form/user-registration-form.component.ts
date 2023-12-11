@@ -131,9 +131,11 @@ export class UserRegistrationFormComponent {
           }
         }
         //Termina Knowledge Area
+        console.log('Entra acá');
+
         Swal.fire({
           title: 'Creación Exitosa.',
-          text: `El usuario ${this.user.username} ahora se encuentra registrado`,
+          text: `El usuario ${this.user.username} ahora se encuentra ${this.user.status}`,
           icon: 'info',
           confirmButtonColor: '#5fc1c5   ',
           confirmButtonText: 'Aceptar',
@@ -183,7 +185,6 @@ export class UserRegistrationFormComponent {
         const data = await this.usersService.insertKnowledgeArea(
           this.userknoweldge
         );
-        this.message.loading(false);
       }
     } catch (error) {}
   }

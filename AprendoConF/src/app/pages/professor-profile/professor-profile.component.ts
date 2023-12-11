@@ -15,12 +15,11 @@ export class ProfessorProfileComponent implements OnInit {
   oneProfessor: User | any;
   userId: any;
   infoUser: any;
-  roleUser !: string;
-
+  roleUser!: string;
 
   showOpinionModal: boolean = false;
   token = localStorage.getItem('miToken'); //agregado
-  show = false
+  show = false;
 
   userService: DataService = inject(DataService);
   messageService = inject(MessageService);
@@ -53,14 +52,12 @@ export class ProfessorProfileComponent implements OnInit {
     }
     this.getTeachersById();
 
-
-
-     this.mostrar();
+    this.mostrar();
   }
 
   mostrar() {
-    console.log(this.token)
-    this.token? this.show=true: this.show=false;
+    console.log(this.token);
+    this.token ? (this.show = true) : (this.show = false);
   }
 
   getTeachersById() {
@@ -78,7 +75,7 @@ export class ProfessorProfileComponent implements OnInit {
     });
   }
 
-  getRatingImageUrl(rating: number): string {
+  getRatingImageUrl(rating: number): any {
     return `./assets/images/Puntuacion_Gold_${rating}_Stars.png`;
   }
 
