@@ -35,8 +35,8 @@ export class AutorizacionService {
     return JSON.parse(jsonPayload);
     }
     this.infoUser = decodeJWT(datos); 
-    console.log(this.infoUser);
-    const user={id:this.infoUser.id, rol: this.infoUser.rol};
+    const user={id:this.infoUser.id, rol: this.infoUser.role};
+    console.log('usuario',user);
     return this.usuarioactual.next(user);
   }
 

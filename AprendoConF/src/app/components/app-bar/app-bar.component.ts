@@ -27,6 +27,7 @@ ngOnInit(): void {
     } else {
       this.usuarioActual = usuario;
     }
+    console.log('hola',this.usuarioActual);
     this.cdr.detectChanges();
   });
 
